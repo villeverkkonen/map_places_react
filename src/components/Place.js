@@ -2,7 +2,7 @@ import React from 'react'
 
 const Place = ({ place }) => {
     return (
-        <li>
+        <li key={place.id}>
             {place.title}
         </li>
     )
