@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
-import PlaceReducer from '../reducers/PlaceReducer'
+import { connect } from "react-redux";
+import MarkerList from './MarkerList'
 
 const mapStyles = {
   width: '50vw',
   height: '50vh'
 }
 
-export class MapContainer extends Component {
-  constructor() {
-    super()
+const mapStateToProps = state => {
+  return { places: state.places };
+}
+
+export class ConnectedContainer extends Component {
+  constructor(props) {
+    super(props)
 
     this.state = {
       showingInfoWindow: false,
@@ -17,6 +22,12 @@ export class MapContainer extends Component {
       selectedPlace: {},
       places: []
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      places: this.state.places.concat(this.props.places)
+    })
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -47,11 +58,17 @@ export class MapContainer extends Component {
             lng: 24.945831
           }}
         >
+        <MarkerList places={this.state.places} />
+        <Marker position={{lat: 60, lng: 25}} />
+          
         </Map>
+        
       </div>
     );
   }
 }
+
+const MapContainer = connect(mapStateToProps)(ConnectedContainer)
 
 export default GoogleApiWrapper({
   apiKey: ''
