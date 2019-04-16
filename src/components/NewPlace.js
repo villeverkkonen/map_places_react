@@ -18,14 +18,30 @@ const NewPlace = (props) => {
         event.target.openingHours.value = ''
     }
     return (
-        <form onSubmit={addPlace}>
-            <input name="title" />
-            <input name="description" />
-            <input name="latitude" />
-            <input name="longitude" />
-            <input name="openingHours" />
-            <button type="submit">Save</button>
-        </form>
+        <div className="newPlaceForm">
+            <form onSubmit={addPlace}>
+                <div>
+                    <label htmlFor="title">Title</label>
+                    <input name="title" id="title" />
+                </div>
+                <div>
+                    <label htmlFor="description">Description</label>
+                    <input name="description" />
+                </div>
+                <div>
+                    <label htmlFor="latitude">Latitude</label>
+                    <input name="latitude" />
+                </div><div>
+                    <label htmlFor="longitude">Longitude</label>
+                    <input name="longitude" />
+                </div>
+                <div>
+                    <label htmlFor="openingHours">Opening hours</label>
+                    <input name="openingHours" />
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
     )
 }
 
