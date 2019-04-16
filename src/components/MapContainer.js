@@ -1,25 +1,30 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
+import PlaceReducer from '../reducers/PlaceReducer'
 
 const mapStyles = {
   width: '50vw',
   height: '50vh'
-};
+}
 
 export class MapContainer extends Component {
+  constructor() {
+    super()
 
-  state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {}
+    this.state = {
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
+      places: []
+    }
   }
 
   onMarkerClick = (props, marker, e) =>
-  this.setState({
-    selectedPlace: props,
-    activeMarker: marker,
-    showingInfoWindow: true
-  })
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    })
 
   onClose = props => {
     if (this.state.showingInfoWindow) {
@@ -42,18 +47,6 @@ export class MapContainer extends Component {
             lng: 24.945831
           }}
         >
-          <Marker
-            onClick={this.onMarkerClick}
-            name={'Testi'}
-          />
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onClose}
-          />
-          <div>
-            <h4>{this.state.selectedPlace.name}</h4>
-          </div>
         </Map>
       </div>
     );

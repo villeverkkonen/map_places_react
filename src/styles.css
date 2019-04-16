@@ -19,3 +19,8 @@ code {
   height: 100%;
   width: fit-content;
 }
+
+.map div:first-child {
+  width: inherit !important;
+  height: inherit !important;
+}

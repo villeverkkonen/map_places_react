@@ -1,20 +1,22 @@
 const generateId = () => Number((Math.random() * 1000000).toFixed(0))
 
-const initialState = [
-    {
+const initialState = {
+    places: [{
         title: "Title",
         description: "Description",
         latitude: "60",
         longitude: "25",
         openingHours: "8-16",
         id: generateId()
-    }
-]
+    }]
+}
 
 const PlaceReducer = (state = initialState, action) => {
     switch (action.type) {
-      case 'NEW_PLACE':
-        return [...state, action.data]
+      case 'ADD_PLACE':
+        return Object.assign({}, state, {
+            places: state.places.concat(action.data)
+        })
       default:
         return state
     }
@@ -22,16 +24,20 @@ const PlaceReducer = (state = initialState, action) => {
 
 export const createPlace = (content) => {
     return {
-        type: 'NEW_PLACE',
+        type: 'ADD_PLACE',
         data: {
-            title: content.title.value,
-            description: content.description.value,
-            latitude: content.latitude.value,
-            longitude: content.longitude.value,
-            openingHours: content.openingHours.value,
+            title: content.title,
+            description: content.description,
+            latitude: content.latitude,
+            longitude: content.longitude,
+            openingHours: content.openingHours,
             id: generateId()
         }
     }
+}
+
+export const getPlaces = () => {
+    return {}
 }
 
 export default PlaceReducer

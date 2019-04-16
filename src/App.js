@@ -1,15 +1,14 @@
 import React from 'react'
 import MapContainer from './components/MapContainer'
-import NewPlace from './components/NewPlace'
+import NewPlace from './components/PlacesForm'
 import Places from './components/Places'
 
-const App = (props) => {
-  const store = props.store
+const App = () => {
   return (
     <div className="content">
-      <MapContainer store={store} />
-      <NewPlace store={store} />
-      <Places store={store} />
+      <MapContainer />
+      <NewPlace />
+      <Places />
     </div>
   )
 }
