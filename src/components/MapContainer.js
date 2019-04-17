@@ -58,9 +58,7 @@ export class ConnectedContainer extends Component {
             lng: 24.945831
           }}
         >
-        <MarkerList places={this.state.places} />
-        <Marker position={{lat: 60, lng: 25}} />
-          
+          <MarkerList places={this.state.places} />
         </Map>
         
       </div>
