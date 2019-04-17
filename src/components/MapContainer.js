@@ -30,22 +30,6 @@ export class ConnectedContainer extends Component {
     })
   }
 
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    })
-
-  onClose = props => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      })
-    }
-  }
-
   render() {
     return (
       <div className="map" style={mapStyles}>
