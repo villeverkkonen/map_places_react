@@ -27,6 +27,10 @@ const PlaceReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             places: state.places.concat(action.data)
         })
+    case 'DELETE_PLACE':
+        return Object.assign({}, state, {
+            places: state.places.filter(place => place.id !== action.data.id)
+        })
       default:
         return state
     }
@@ -46,8 +50,12 @@ export const createPlace = (content) => {
     }
 }
 
-export const getPlaces = () => {
-    return {}
+export const deletePlace = (id) => {
+    console.log("Reducer ID poistuu: " + id)
+    return {
+        type: 'DELETE_PLACE',
+        data: { id: id }
+    }
 }
 
 export default PlaceReducer

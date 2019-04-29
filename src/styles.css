@@ -20,7 +20,7 @@ code {
   width: fit-content;
 }
 
-.map div:first-child {
-  width: inherit !important;
-  height: inherit !important;
+.newPlaceForm, .placesList {
+  z-index: 1;
+  position: relative;
 }

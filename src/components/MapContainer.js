@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
-import { connect } from "react-redux";
-import MarkerList from './MarkerList'
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
+import { connect } from "react-redux"
+import InfoWindowEx from './InfoWindowEx'
 
 const mapStyles = {
   width: '50vw',
@@ -17,17 +17,26 @@ export class ConnectedContainer extends Component {
     super(props)
 
     this.state = {
-      showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {},
-      places: []
+      selectedPlace: {}
     }
+
+    this.toggleInfoWindow = this.toggleInfoWindow.bind(this)
   }
 
-  componentDidMount() {
-    this.setState({
-      places: this.state.places.concat(this.props.places)
-    })
+  toggleInfoWindow = (props, marker, e) => {
+    if (marker.title === this.state.activeMarker.title && this.state.showingInfoWindow) {
+      this.setState({
+        activeMarker: {},
+        showingInfoWindow: false
+      })
+    } else {
+      this.setState({
+        selectedPlace: props.place_,
+        activeMarker: marker,
+        showingInfoWindow: true
+      })
+    }
   }
 
   render() {
@@ -42,7 +51,25 @@ export class ConnectedContainer extends Component {
             lng: 24.945831
           }}
         >
-          <MarkerList places={this.state.places} />
+          {this.props.places.map(place =>
+                <Marker
+                    key={place.id}
+                    position={{lat: place.latitude, lng: place.longitude}}
+                    title={place.title}
+                    place_={place}
+                    onClick={this.toggleInfoWindow}
+                />
+            )}
+            <InfoWindowEx
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+            >
+              <div className="infoWindow">
+                <h3>{this.state.selectedPlace.title}</h3>
+                <p>{this.state.selectedPlace.description}</p>
+                <p>Open: {this.state.selectedPlace.openingHours}</p>
+              </div>
+            </InfoWindowEx>
         </Map>
         
       </div>
