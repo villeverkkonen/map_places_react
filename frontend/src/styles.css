@@ -20,7 +20,15 @@ code {
   width: fit-content;
 }
 
-.newPlaceForm, .placesList {
+.newPlaceForm, .placesList, .placeForm {
   z-index: 1;
   position: relative;
+}
+
+.placeTitle {
+  color: blue;
+}
+
+.placeTitle:hover {
+  cursor: pointer;
 }

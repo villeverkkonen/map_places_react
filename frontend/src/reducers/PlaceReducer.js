@@ -27,9 +27,15 @@ const PlaceReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             places: state.places.concat(action.data)
         })
-    case 'DELETE_PLACE':
+      case 'DELETE_PLACE':
         return Object.assign({}, state, {
             places: state.places.filter(place => place.id !== action.data.id)
+        })
+      case 'UPDATE_PLACE':
+        let placeToBeUpdated = state.places.filter(place => place.id === action.data.place.id)[0]
+
+        return Object.assign({}, state, {
+            places: updatePlaceInArray(state.places, action.data.place, placeToBeUpdated)
         })
       default:
         return state
@@ -51,11 +57,35 @@ export const createPlace = (content) => {
 }
 
 export const deletePlace = (id) => {
-    console.log("Reducer ID poistuu: " + id)
     return {
         type: 'DELETE_PLACE',
         data: { id: id }
     }
 }
+
+export const updatePlace = (place) => {
+    return {
+        type: 'UPDATE_PLACE',
+        data: { place: place }
+    }
+}
+
+function updatePlaceInArray(array, placeData, placeToBeUpdated) {
+    placeToBeUpdated.title = placeData.title
+    placeToBeUpdated.description = placeData.description
+    placeToBeUpdated.latitude = placeData.latitude
+    placeToBeUpdated.longitude = placeData.longitude
+    placeToBeUpdated.openingHours = placeData.openingHours
+
+    return array.map((place) => {
+      if (place.id !== placeToBeUpdated.id) {
+        return place
+      }
+      return {
+        ...place,
+        ...placeToBeUpdated
+      }
+    })
+  }
 
 export default PlaceReducer

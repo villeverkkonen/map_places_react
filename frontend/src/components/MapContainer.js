@@ -44,7 +44,7 @@ export class ConnectedContainer extends Component {
       <div className="map" style={mapStyles}>
         <Map
           google={this.props.google}
-          zoom={6}
+          zoom={5}
           style={mapStyles}
           initialCenter={{
             lat: 60.192059,
