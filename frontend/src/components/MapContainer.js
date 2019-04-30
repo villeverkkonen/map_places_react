@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 import { connect } from "react-redux"
+import axios from 'axios'
 import InfoWindowEx from './InfoWindowEx'
 
 const mapStyles = {
@@ -18,10 +19,18 @@ export class ConnectedContainer extends Component {
 
     this.state = {
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: {},
+      apiKey: ''
     }
 
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this)
+  }
+
+  componentDidMount() {
+    const apiKey = axios.get('http://localhost:3001/api_key')
+    this.setState({
+      apiKey: apiKey
+    })
   }
 
   toggleInfoWindow = (props, marker, e) => {
@@ -77,8 +86,16 @@ export class ConnectedContainer extends Component {
   }
 }
 
+const getApiKey = () => {
+  axios
+    .get('http://localhost:3001/api_key')
+    .then(response => {
+      console.log("API_KEY: " + response.data)
+      return response.data
+    })
+}
 const MapContainer = connect(mapStateToProps)(ConnectedContainer)
 
 export default GoogleApiWrapper({
-  apiKey: ''
+  apiKey: getApiKey()
 })(MapContainer)
