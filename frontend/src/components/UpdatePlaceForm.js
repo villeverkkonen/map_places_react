@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
-import { updatePlace } from '../reducers/PlaceReducer'
+import { updatePlace } from '../actions/PlaceActions'
 
 function mapDispatchToProps(dispatch) {
     return {

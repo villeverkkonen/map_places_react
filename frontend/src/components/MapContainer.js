@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 import { connect } from "react-redux"
-import axios from 'axios'
 import InfoWindowEx from './InfoWindowEx'
+import mapService from '../services/maps'
 
 const mapStyles = {
   width: '50vw',
@@ -26,12 +26,12 @@ export class ConnectedContainer extends Component {
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this)
   }
 
-  componentDidMount() {
-    const apiKey = axios.get('http://localhost:3001/api_key')
-    this.setState({
-      apiKey: apiKey
-    })
-  }
+  // componentDidMount() {
+  //   const apiKey = axios.get('http://localhost:3001/api/api_key')
+  //   this.setState({
+  //     apiKey: apiKey
+  //   })
+  // }
 
   toggleInfoWindow = (props, marker, e) => {
     if (marker.title === this.state.activeMarker.title && this.state.showingInfoWindow) {
@@ -87,15 +87,12 @@ export class ConnectedContainer extends Component {
 }
 
 const getApiKey = () => {
-  axios
-    .get('http://localhost:3001/api_key')
-    .then(response => {
-      console.log("API_KEY: " + response.data)
-      return response.data
-    })
+  return mapService.getApiKey()
 }
+
 const MapContainer = connect(mapStateToProps)(ConnectedContainer)
 
 export default GoogleApiWrapper({
-  apiKey: getApiKey()
+  // apiKey: getApiKey()
+  apiKey: ''
 })(MapContainer)

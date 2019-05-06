@@ -1,37 +1,49 @@
-const generateId = () => Number((Math.random() * 1000000).toFixed(0))
+import {
+  CREATE_PLACE,
+  DELETE_PLACE,
+  UPDATE_PLACE,
+  FETCH_PLACES_BEGIN,
+  FETCH_PLACES_SUCCESS,
+  FETCH_PLACES_FAILURE
+} from '../constants/PlaceConstants'
+import { updatePlaceInArray } from '../actions/PlaceActions'
 
 const initialState = {
-    places: [
-        {
-            title: "Test One",
-            description: "First",
-            latitude: "60",
-            longitude: "25",
-            openingHours: "8-16",
-            id: generateId()
-        },
-        {
-            title: "Test Two",
-            description: "Second",
-            latitude: "61",
-            longitude: "26",
-            openingHours: "8-16",
-            id: generateId()
-        }
-    ]
+    places: [],
+    loading: false,
+    error: null
 }
 
 const PlaceReducer = (state = initialState, action) => {
     switch (action.type) {
-      case 'ADD_PLACE':
+      case FETCH_PLACES_BEGIN:
+        return {
+          ...state,
+          loading: true,
+          error: null
+        }
+      case FETCH_PLACES_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          places: action.data.places
+        }
+      case FETCH_PLACES_FAILURE:
+        return {
+          ...state,
+          loading: false,
+          error: action.data.error,
+          places: []
+        }
+      case CREATE_PLACE:
         return Object.assign({}, state, {
             places: state.places.concat(action.data)
         })
-      case 'DELETE_PLACE':
+      case DELETE_PLACE:
         return Object.assign({}, state, {
             places: state.places.filter(place => place.id !== action.data.id)
         })
-      case 'UPDATE_PLACE':
+      case UPDATE_PLACE:
         let placeToBeUpdated = state.places.filter(place => place.id === action.data.place.id)[0]
 
         return Object.assign({}, state, {
@@ -41,51 +53,5 @@ const PlaceReducer = (state = initialState, action) => {
         return state
     }
 }
-
-export const createPlace = (content) => {
-    return {
-        type: 'ADD_PLACE',
-        data: {
-            title: content.title,
-            description: content.description,
-            latitude: content.latitude,
-            longitude: content.longitude,
-            openingHours: content.openingHours,
-            id: generateId()
-        }
-    }
-}
-
-export const deletePlace = (id) => {
-    return {
-        type: 'DELETE_PLACE',
-        data: { id: id }
-    }
-}
-
-export const updatePlace = (place) => {
-    return {
-        type: 'UPDATE_PLACE',
-        data: { place: place }
-    }
-}
-
-function updatePlaceInArray(array, placeData, placeToBeUpdated) {
-    placeToBeUpdated.title = placeData.title
-    placeToBeUpdated.description = placeData.description
-    placeToBeUpdated.latitude = placeData.latitude
-    placeToBeUpdated.longitude = placeData.longitude
-    placeToBeUpdated.openingHours = placeData.openingHours
-
-    return array.map((place) => {
-      if (place.id !== placeToBeUpdated.id) {
-        return place
-      }
-      return {
-        ...place,
-        ...placeToBeUpdated
-      }
-    })
-  }
 
 export default PlaceReducer

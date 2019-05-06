@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { deletePlace } from '../reducers/PlaceReducer'
+import { deletePlace } from '../actions/PlaceActions'
 import UpdatePlaceForm from './UpdatePlaceForm'
 
 const mapDispatchToProps = (dispatch) => {
@@ -48,6 +48,7 @@ class ConnectedPlace extends Component {
                     <div>
                         <span>{this.state.place.description}</span><br/>
                         <span>Open: {this.state.place.openingHours}</span><br/>
+                        <span>ID: {this.state.place.id}</span><br/>
                         <button onClick={this.handleDeletePlace}>Delete</button>
                         <button onClick={this.toggleUpdatePlace}>Update</button>
                         {this.state.showUpdateForm ?
