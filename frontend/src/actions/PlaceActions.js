@@ -22,24 +22,6 @@ export function fetchPlaces() {
     }
 }
 
-export function updatePlaceInArray(array, placeData, placeToBeUpdated) {
-    placeToBeUpdated.title = placeData.title
-    placeToBeUpdated.description = placeData.description
-    placeToBeUpdated.latitude = placeData.latitude
-    placeToBeUpdated.longitude = placeData.longitude
-    placeToBeUpdated.openingHours = placeData.openingHours
-  
-    return array.map((place) => {
-      if (place.id !== placeToBeUpdated.id) {
-        return place
-      }
-      return {
-        ...place,
-        ...placeToBeUpdated
-      }
-    })
-  }
-
 export const createPlace = content => {
 
     const place = {
@@ -56,7 +38,6 @@ export const createPlace = content => {
             console.log(err)
         })
         .then(res => {
-            console.log(res)
             dispatch(dispatchCreatePlace(res))
         })
     }

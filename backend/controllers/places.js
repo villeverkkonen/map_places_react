@@ -78,10 +78,9 @@ placesRouter.put('/:id', (req, res) => {
     }
 
     Place
-        .findOneAndUpdate(req.params.id, place, { new: true })
-        .then(formatPlace)
-        .then(savedAndFormattedPlace => {
-            res.json(formatPlace(savedAndFormattedPlace))
+        .findByIdAndUpdate(req.params.id, place, { new: true })
+        .then(updatedPlace => {
+            res.json(formatPlace(updatedPlace))
         })
         .catch(error => {
             console.log(error)

@@ -6,7 +6,6 @@ import {
   FETCH_PLACES_SUCCESS,
   FETCH_PLACES_FAILURE
 } from '../constants/PlaceConstants'
-import { updatePlaceInArray } from '../actions/PlaceActions'
 
 const initialState = {
     places: [],
@@ -44,10 +43,8 @@ const PlaceReducer = (state = initialState, action) => {
             places: state.places.filter(place => place.id !== action.data.id)
         })
       case UPDATE_PLACE:
-        let placeToBeUpdated = state.places.filter(place => place.id === action.data.place.id)[0]
-
         return Object.assign({}, state, {
-            places: updatePlaceInArray(state.places, action.data.place, placeToBeUpdated)
+          places: state.places.map(place => place.id !== action.data.place.id ? place : action.data.place)
         })
       default:
         return state

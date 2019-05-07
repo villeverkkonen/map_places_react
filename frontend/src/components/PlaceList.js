@@ -16,7 +16,6 @@ class ConnectedList extends React.Component {
 
     render() {
         const { error, loading, places } = this.props
-
         if (error) {
             return <div>Error! {error.message}</div>
         }

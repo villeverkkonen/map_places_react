@@ -23,7 +23,9 @@ const deletePlace = (id) => {
 
 const updatePlace = (place) => {
     const request = axios.put(baseUrl + place.id, place)
-    return request.then(response => { return response.data })
+    return request.then(response => {
+        return response.data
+    })
 }
 
 export default {

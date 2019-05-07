@@ -14,7 +14,6 @@ class ConnectedPlace extends Component {
         super(props);
 
         this.state = {
-            place: this.props.place,
             showPlace: false,
             showUpdateForm: false
         }
@@ -29,7 +28,7 @@ class ConnectedPlace extends Component {
     }
 
     handleDeletePlace() {
-        this.props.deletePlace(this.state.place.id)
+        this.props.deletePlace(this.props.place.id)
     }
 
     toggleShowPlace() {
@@ -42,18 +41,18 @@ class ConnectedPlace extends Component {
 
     render() {
         return (
-            <li key={this.state.place.id}>
-                <span onClick={this.toggleShowPlace} className="placeTitle">{this.state.place.title}</span>
+            <li key={this.props.place.id}>
+                <span onClick={this.toggleShowPlace} className="placeTitle">{this.props.place.title}</span>
+                <br/><span>{this.props.place.id}</span>
                 {this.state.showPlace ?
                     <div>
-                        <span>{this.state.place.description}</span><br/>
-                        <span>Open: {this.state.place.openingHours}</span><br/>
-                        <span>ID: {this.state.place.id}</span><br/>
+                        <span>{this.props.place.description}</span><br/>
+                        <span>Open: {this.props.place.openingHours}</span><br/>
                         <button onClick={this.handleDeletePlace}>Delete</button>
                         <button onClick={this.toggleUpdatePlace}>Update</button>
                         {this.state.showUpdateForm ?
                             <UpdatePlaceForm
-                                place={this.state.place}
+                                place={this.props.place}
                                 toggleUpdatePlace={this.toggleUpdatePlace}
                             />
                         : null}

@@ -17,7 +17,8 @@ class ConnectedUpdateForm extends Component {
             description: "",
             latitude: "",
             longitude: "",
-            openingHours: ""
+            openingHours: "",
+            id: ""
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -43,6 +44,7 @@ class ConnectedUpdateForm extends Component {
 
     handleUpdate(event) {
         event.preventDefault()
+
         const title = this.state.title
         const description = this.state.description
         const latitude = this.state.latitude
@@ -82,7 +84,7 @@ class ConnectedUpdateForm extends Component {
                 <form onSubmit={this.handleUpdate}>
                     <div className="form-group">
                         <label htmlFor="title">Title</label>
-                        <input type="text" className="form-control" id="title" value={title} onChange={this.handleChange} />
+                        <input type="text" className="form-control" id="title" value={title} onChange={this.handleChange} autoFocus />
                     </div>
                     <div className="form-group">
                         <label htmlFor="description">Description</label>
