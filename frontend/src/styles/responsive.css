@@ -1,0 +1,15 @@
+@media only screen and (max-width: 450px) {
+    .createPlaceLabel, .updatePlaceLabel {
+        float: none;
+        width: 100%;
+    }
+
+    .createPlaceInput, .updatePlaceInput {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .createPlaceSaveButton, .updatePlaceSaveButton {
+        margin-left: 0;
+    }
+}

@@ -13,11 +13,11 @@ class ConnectedUpdateForm extends Component {
         super(props)
 
         this.state = {
-            title: "",
-            description: "",
-            latitude: "",
-            longitude: "",
-            openingHours: "",
+            updateTitle: "",
+            updateDescription: "",
+            updateLatitude: "",
+            updateLongitude: "",
+            updateOpeningHours: "",
             id: ""
         }
 
@@ -27,11 +27,11 @@ class ConnectedUpdateForm extends Component {
 
     componentDidMount() {
         this.setState({
-            title: this.props.place.title,
-            description: this.props.place.description,
-            latitude: this.props.place.latitude,
-            longitude: this.props.place.longitude,
-            openingHours: this.props.place.openingHours,
+            updateTitle: this.props.place.title,
+            updateDescription: this.props.place.description,
+            updateLatitude: this.props.place.latitude,
+            updateLongitude: this.props.place.longitude,
+            updateOpeningHours: this.props.place.openingHours,
             id: this.props.place.id
         })
     }
@@ -45,64 +45,51 @@ class ConnectedUpdateForm extends Component {
     handleUpdate(event) {
         event.preventDefault()
 
-        const title = this.state.title
-        const description = this.state.description
-        const latitude = this.state.latitude
-        const longitude = this.state.longitude
-        const openingHours = this.state.openingHours
-        const id = this.state.id
-
         this.props.updatePlace({
-            title,
-            description,
-            latitude,
-            longitude,
-            openingHours,
-            id
+            title: this.state.updateTitle,
+            description: this.state.updateDescription,
+            latitude: this.state.updateLatitude,
+            longitude: this.state.updateLongitude,
+            openingHours: this.state.updateOpeningHours,
+            id: this.state.id
         })
 
         this.setState({
-            title: "",
-            description: "",
-            latitude: "",
-            longitude: "",
-            openingHours: ""
+            updateTitle: "",
+            updateDescription: "",
+            updateLatitude: "",
+            updateLongitude: "",
+            updateOpeningHours: ""
         })
 
-        this.props.toggleUpdatePlace()
+        this.props.hideUpdatePlace()
     }
 
     render() {
-        const title = this.state.title
-        const description = this.state.description
-        const latitude = this.state.latitude
-        const longitude = this.state.longitude
-        const openingHours = this.state.openingHours
-
         return (
             <div className="updatePlaceForm" id="updatePlaceForm">
-                <form onSubmit={this.handleUpdate}>
-                    <div className="form-group">
-                        <label htmlFor="title">Title</label>
-                        <input type="text" className="form-control" id="title" value={title} onChange={this.handleChange} autoFocus />
+                <form onSubmit={this.handleUpdate} autoComplete="off">
+                    <div className="updatePlaceFormRow">
+                        <label htmlFor="updateTitle" className="updatePlaceLabel">Title</label>
+                        <input type="text" className="updatePlaceInput" id="updateTitle" value={this.state.updateTitle} onChange={this.handleChange} autoFocus />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="description">Description</label>
-                        <input type="text" className="form-control" id="description" value={description} onChange={this.handleChange} />
+                    <div className="updatePlaceFormRow">
+                        <label htmlFor="updateDescription" className="updatePlaceLabel">Description</label>
+                        <input type="text" className="updatePlaceInput" id="updateDescription" value={this.state.updateDescription} onChange={this.handleChange} />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="latitude">Latitude</label>
-                        <input type="text" className="form-control" id="latitude" value={latitude} onChange={this.handleChange} />
+                    <div className="updatePlaceFormRow">
+                        <label htmlFor="updateLatitude" className="updatePlaceLabel">Latitude</label>
+                        <input type="text" className="updatePlaceInput" id="updateLatitude" value={this.state.updateLatitude} onChange={this.handleChange} />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="longitude">Longitude</label>
-                        <input type="text" className="form-control" id="longitude" value={longitude} onChange={this.handleChange} />
+                    <div className="updatePlaceFormRow">
+                        <label htmlFor="updateLongitude" className="updatePlaceLabel">Longitude</label>
+                        <input type="text" className="updatePlaceInput" id="updateLongitude" value={this.state.updateLongitude} onChange={this.handleChange} />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="openingHours">Opening hours</label>
-                        <input type="text" className="form-control" id="openingHours" value={openingHours} onChange={this.handleChange} />
+                    <div className="updatePlaceFormRow">
+                        <label htmlFor="updateOpeningHours" className="updatePlaceLabel">Opening hours</label>
+                        <input type="text" className="updatePlaceInput" id="updateOpeningHours" value={this.state.updateOpeningHours} onChange={this.handleChange} />
                     </div>
-                    <button type="submit" className="btn btn-success btn-lg">Save</button>
+                    <button type="submit" className="updatePlaceSaveButton">Save</button>
                 </form>
             </div>
         )

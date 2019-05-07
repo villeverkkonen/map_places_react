@@ -21,6 +21,7 @@ class ConnectedPlace extends Component {
         this.handleDeletePlace = this.handleDeletePlace.bind(this)
         this.toggleShowPlace = this.toggleShowPlace.bind(this)
         this.toggleUpdatePlace = this.toggleUpdatePlace.bind(this)
+        this.hideUpdatePlace = this.hideUpdatePlace.bind(this)
     }
 
     componentDidMount() {
@@ -32,32 +33,57 @@ class ConnectedPlace extends Component {
     }
 
     toggleShowPlace() {
+        const titleText = document.getElementById("placeListTitle" + this.props.place.id)
+        const placeDiv = document.getElementById("placeListObject" + this.props.place.id)
+
+        if (this.state.showPlace) {
+            titleText.style.color = "orange"
+            placeDiv.classList.remove("linearGradient")
+        } else {
+            titleText.style.color = "gold"
+            placeDiv.classList.add("linearGradient")
+        }
+
         this.setState({ showPlace: !this.state.showPlace })
     }
 
-    toggleUpdatePlace() {
+    toggleUpdatePlace = (event) => {
+        event.preventDefault()
+
+        !this.state.showUpdateForm ? event.target.classList.add("goldenButton") : event.target.classList.remove("goldenButton")
         this.setState({ showUpdateForm: !this.state.showUpdateForm })
     }
 
+    hideUpdatePlace() {
+        this.setState({
+            showUpdateForm: false
+        })
+
+        let button = document.getElementById("updatePlaceButton")
+        button.classList.remove("goldenButton")
+    }
+
     render() {
+        const placeDivId = "placeListObject" + this.props.place.id
+        const placeListTitleId = "placeListTitle" + this.props.place.id
         return (
-            <li key={this.props.place.id}>
-                <span onClick={this.toggleShowPlace} className="placeTitle">{this.props.place.title}</span>
+            <div key={this.props.place.id} className="placeListObject" id={placeDivId}>
+                <span onClick={this.toggleShowPlace} className="placeListTitle" id={placeListTitleId}>{this.props.place.title}</span>
                 {this.state.showPlace ?
                     <div>
                         <span>{this.props.place.description}</span><br/>
                         <span>Open: {this.props.place.openingHours}</span><br/>
-                        <button onClick={this.handleDeletePlace}>Delete</button>
-                        <button onClick={this.toggleUpdatePlace}>Update</button>
+                        <button onClick={this.handleDeletePlace} className="deletePlaceButton">Delete</button>
+                        <button onClick={this.toggleUpdatePlace} className="updatePlaceButton" id="updatePlaceButton">Update</button>
                         {this.state.showUpdateForm ?
                             <UpdatePlaceForm
                                 place={this.props.place}
-                                toggleUpdatePlace={this.toggleUpdatePlace}
+                                hideUpdatePlace={this.hideUpdatePlace}
                             />
                         : null}
                     </div>
                 : null}
-            </li>
+            </div>
         )
     }
 }

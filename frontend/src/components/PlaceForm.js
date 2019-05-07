@@ -23,6 +23,7 @@ class ConnectedForm extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.toggleFormDisplay = this.toggleFormDisplay.bind(this)
+        this.hideForm = this.hideForm.bind(this)
     }
 
     handleChange(event) {
@@ -55,52 +56,59 @@ class ConnectedForm extends Component {
             openingHours: ""
         })
 
-        this.toggleFormDisplay()
+        this.hideForm()
     }
 
-    toggleFormDisplay = () => {
-        let form = document.getElementById("newPlaceForm")
+    toggleFormDisplay(event) {
+        event.preventDefault()
+
+        let form = document.getElementById("createPlaceForm")
+
+        form.style.display === "none" ? event.target.classList.add("goldenButton") : event.target.classList.remove("goldenButton")
+        
         form.style.display === "none" ? form.style.display = "block" : form.style.display = "none"
         document.getElementById("title").focus()
     }
 
-    render() {
-        const title = this.state.title
-        const description = this.state.description
-        const latitude = this.state.latitude
-        const longitude = this.state.longitude
-        const openingHours = this.state.openingHours
+    hideForm() {
+        let form = document.getElementById("createPlaceForm")
+        form.style.display = "none"
 
+        let button = document.getElementById("addPlaceButton")
+        button.classList.remove("goldenButton")
+    }
+
+    render() {
         const formStyle = {
             display: "none"
         }
 
         return (
             <div className="placeForm">
-                <button onClick={this.toggleFormDisplay}>Add place</button>
-                <div className="newPlaceForm" id="newPlaceForm" style={formStyle}>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="title">Title</label>
-                            <input type="text" className="form-control" id="title" value={title} onChange={this.handleChange} />
+                <button onClick={this.toggleFormDisplay} className="addPlaceButton" id="addPlaceButton">Add place</button>
+                <div className="createPlaceForm" id="createPlaceForm" style={formStyle}>
+                    <form onSubmit={this.handleSubmit} autoComplete="off">
+                        <div className="createPlaceFormRow">
+                            <label htmlFor="title" className="createPlaceLabel">Title</label>
+                            <input type="text" className="createPlaceInput" id="title" value={this.state.title} onChange={this.handleChange} />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="description">Description</label>
-                            <input type="text" className="form-control" id="description" value={description} onChange={this.handleChange} />
+                        <div className="createPlaceFormRow">
+                            <label htmlFor="description" className="createPlaceLabel">Description</label>
+                            <input type="text" className="createPlaceInput" id="description" value={this.state.description} onChange={this.handleChange} />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="latitude">Latitude</label>
-                            <input type="text" className="form-control" id="latitude" value={latitude} onChange={this.handleChange} />
+                        <div className="createPlaceFormRow">
+                            <label htmlFor="latitude" className="createPlaceLabel">Latitude</label>
+                            <input type="text" className="createPlaceInput" id="latitude" value={this.state.latitude} onChange={this.handleChange} />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="longitude">Longitude</label>
-                            <input type="text" className="form-control" id="longitude" value={longitude} onChange={this.handleChange} />
+                        <div className="createPlaceFormRow">
+                            <label htmlFor="longitude" className="createPlaceLabel">Longitude</label>
+                            <input type="text" className="createPlaceInput" id="longitude" value={this.state.longitude} onChange={this.handleChange} />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="openingHours">Opening hours</label>
-                            <input type="text" className="form-control" id="openingHours" value={openingHours} onChange={this.handleChange} />
+                        <div className="createPlaceFormRow">
+                            <label htmlFor="openingHours" className="createPlaceLabel">Opening hours</label>
+                            <input type="text" className="createPlaceInput" id="openingHours" value={this.state.openingHours} onChange={this.handleChange} />
                         </div>
-                        <button type="submit" className="btn btn-success btn-lg">Save</button>
+                        <button type="submit" className="createPlaceSaveButton">Save</button>
                     </form>
                 </div>
             </div>

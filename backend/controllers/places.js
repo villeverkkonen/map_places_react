@@ -52,7 +52,7 @@ placesRouter.post('/', (req, res) => {
 // Delete place
 placesRouter.delete('/:id', (req, res) => {
     Place
-        .findOneAndRemove(req.params.id)
+        .findByIdAndRemove(req.params.id)
         .then(result  => {
             res.status(204).end()
         })

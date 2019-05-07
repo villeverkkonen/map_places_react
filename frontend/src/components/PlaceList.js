@@ -24,14 +24,12 @@ class ConnectedList extends React.Component {
         }
         return(
             <div className="placesList">
-                <ul>
-                    {places.map(place =>
-                        <Place
-                            key={place.id}
-                            place={place}
-                        />
-                    )}
-                </ul>
+                {places.map(place =>
+                    <Place
+                        key={place.id}
+                        place={place}
+                    />
+                )}
             </div>
         )
     }
