@@ -43,7 +43,6 @@ class ConnectedPlace extends Component {
         return (
             <li key={this.props.place.id}>
                 <span onClick={this.toggleShowPlace} className="placeTitle">{this.props.place.title}</span>
-                <br/><span>{this.props.place.id}</span>
                 {this.state.showPlace ?
                     <div>
                         <span>{this.props.place.description}</span><br/>
