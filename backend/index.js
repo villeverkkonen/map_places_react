@@ -30,7 +30,7 @@ app.use(middleware.logger)
 app.use('/api/places', placesRouter)
 app.use('/api/maps', mapsRouter)
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/backend/build/index.html'))
+    res.sendFile(path.join(__dirname+'backend/build/index.html'))
 })
 app.use(middleware.error)
 
