@@ -24,14 +24,14 @@ mongoose.Promise = global.Promise
 
 app.use(cors())
 app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, 'frontend/build')))
+app.use(express.static(path.join(__dirname, 'backend/build')))
 
 app.use(middleware.logger)
 app.use('/api/places', placesRouter)
 app.use('/api/maps', mapsRouter)
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/frontend/build/index.html'));
-});
+    res.sendFile(path.join(__dirname+'/backend/build/index.html'))
+})
 app.use(middleware.error)
 
 const PORT = process.env.PORT || 3001
