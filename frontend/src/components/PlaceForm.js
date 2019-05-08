@@ -8,6 +8,24 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
+function changeLabelColor(inputId, color) {
+    var labels = document.getElementsByTagName('LABEL')
+    for (var i = 0; i < labels.length; i++) {
+        if (labels[i].htmlFor === inputId) {
+            var input = document.getElementById(labels[i].htmlFor)
+            if (input)
+                input.label = labels[i]
+                input.label.style.color = color
+                break
+        }
+    }
+}
+
+function changeInputColor(inputId, color) {
+    var input = document.getElementById(inputId)
+    input.style.backgroundColor = color
+}
+
 class ConnectedForm extends Component {
     constructor() {
         super();
@@ -24,6 +42,10 @@ class ConnectedForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.toggleFormDisplay = this.toggleFormDisplay.bind(this)
         this.hideForm = this.hideForm.bind(this)
+        this.handleMouseOverLabel = this.handleMouseOverLabel.bind(this)
+        this.handleMouseOutLabel = this.handleMouseOutLabel.bind(this)
+        this.handleMouseOverInput = this.handleMouseOverInput.bind(this)
+        this.handleMouseOutInput = this.handleMouseOutInput.bind(this)
     }
 
     handleChange(event) {
@@ -78,6 +100,30 @@ class ConnectedForm extends Component {
         button.classList.remove("goldenButton")
     }
 
+    handleMouseOverInput(event) {
+        event.preventDefault()
+        changeLabelColor(event.target.id, "gold")
+        changeInputColor(event.target.id, "gold")
+    }
+
+    handleMouseOutInput(event) {
+        event.preventDefault()
+        changeLabelColor(event.target.id, "orange")
+        changeInputColor(event.target.id, "orange")
+    }
+
+    handleMouseOverLabel(event) {
+        event.preventDefault()
+        changeLabelColor(event.target.htmlFor, "gold")
+        changeInputColor(event.target.htmlFor, "gold")
+    }
+
+    handleMouseOutLabel(event) {
+        event.preventDefault()
+        changeLabelColor(event.target.htmlFor, "orange")
+        changeInputColor(event.target.htmlFor, "orange")
+    }
+
     render() {
         const formStyle = {
             display: "none"
@@ -89,24 +135,24 @@ class ConnectedForm extends Component {
                 <div className="createPlaceForm" id="createPlaceForm" style={formStyle}>
                     <form onSubmit={this.handleSubmit} autoComplete="off">
                         <div className="createPlaceFormRow">
-                            <label htmlFor="title" className="createPlaceLabel">Title</label>
-                            <input type="text" className="createPlaceInput" id="title" value={this.state.title} onChange={this.handleChange} />
+                            <label htmlFor="title" className="createPlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Title</label>
+                            <input type="text" className="createPlaceInput" id="title" value={this.state.title} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                         </div>
                         <div className="createPlaceFormRow">
-                            <label htmlFor="description" className="createPlaceLabel">Description</label>
-                            <input type="text" className="createPlaceInput" id="description" value={this.state.description} onChange={this.handleChange} />
+                            <label htmlFor="description" className="createPlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Description</label>
+                            <input type="text" className="createPlaceInput" id="description" value={this.state.description} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                         </div>
                         <div className="createPlaceFormRow">
-                            <label htmlFor="latitude" className="createPlaceLabel">Latitude</label>
-                            <input type="text" className="createPlaceInput" id="latitude" value={this.state.latitude} onChange={this.handleChange} />
+                            <label htmlFor="latitude" className="createPlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Latitude</label>
+                            <input type="text" className="createPlaceInput" id="latitude" value={this.state.latitude} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                         </div>
                         <div className="createPlaceFormRow">
-                            <label htmlFor="longitude" className="createPlaceLabel">Longitude</label>
-                            <input type="text" className="createPlaceInput" id="longitude" value={this.state.longitude} onChange={this.handleChange} />
+                            <label htmlFor="longitude" className="createPlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Longitude</label>
+                            <input type="text" className="createPlaceInput" id="longitude" value={this.state.longitude} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                         </div>
                         <div className="createPlaceFormRow">
-                            <label htmlFor="openingHours" className="createPlaceLabel">Opening hours</label>
-                            <input type="text" className="createPlaceInput" id="openingHours" value={this.state.openingHours} onChange={this.handleChange} />
+                            <label htmlFor="openingHours" className="createPlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Opening hours</label>
+                            <input type="text" className="createPlaceInput" id="openingHours" value={this.state.openingHours} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                         </div>
                         <button type="submit" className="createPlaceSaveButton">Save</button>
                     </form>

@@ -1,0 +1,15 @@
+#alignedDivs {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#leftDiv {
+    flex: 0 0 auto;
+}
+
+#rightDiv {
+    flex: 1;
+    text-align: right;
+    width: min-content;
+}

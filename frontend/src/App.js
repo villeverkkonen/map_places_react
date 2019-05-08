@@ -7,8 +7,15 @@ const App = () => {
   return (
     <div className="content">
       <MapContainer />
-      <PlaceForm />
-      <PlaceList />
+      <div id="alignedDivs">
+        <div id="leftDiv">
+          <PlaceForm />
+        </div>
+
+        <div id="rightDiv">
+          <PlaceList />
+        </div>
+      </div>
     </div>
   )
 }

@@ -6,7 +6,10 @@
 }
 
 .updatePlaceForm {
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: right;
+    clear: both;
 }
 
 .createPlaceLabel, .updatePlaceLabel {
@@ -15,16 +18,15 @@
   
 .createPlaceInput, .updatePlaceInput {
     display: block;
-    margin-left: 150px;
+    margin-left: 15vw;
     background-color: orange;
     border: none;
     border-radius: 5px;
     padding: 5px;
 }
 
-.createPlaceInput:hover, .updatePlaceInput:hover,
 .createPlaceInput:focus, .updatePlaceInput:focus {
-    background-color: gold;
+    background-color: gold !important;
 }
   
 .addPlaceButton,
@@ -59,9 +61,13 @@
     margin-left: 5px;
 }
 
-.createPlaceSaveButton, .updatePlaceSaveButton {
+.updatePlaceSaveButton {
     margin-top: 10px;
     margin-left: 150px;
+}
+
+.createPlaceSaveButton {
+    margin-top: 10px;
 }
 
 .createPlaceFormRow, .updatePlaceFormRow {

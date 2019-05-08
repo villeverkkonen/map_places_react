@@ -57,10 +57,12 @@ code {
 .placeListObject {
   margin-top: 5px;
   padding: 0 5px 5px 5px;
+  clear: both;
+  overflow: hidden;
 }
 
 .linearGradient {
-  background-image: linear-gradient(to right, #282828 , #000000);
+  background-image: linear-gradient(to left, #282828 , #000000);
 }
 
 .goldenButton {

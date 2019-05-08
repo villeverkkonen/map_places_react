@@ -28,7 +28,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "react-redux": "^7.0.2"
+    "react-redux": "^7.0.3"
   },
   "proxy": "http://localhost:3001"
 }

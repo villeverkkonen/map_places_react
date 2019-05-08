@@ -8,6 +8,24 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
+function changeLabelColor(inputId, color) {
+    var labels = document.getElementsByTagName('LABEL')
+    for (var i = 0; i < labels.length; i++) {
+        if (labels[i].htmlFor === inputId) {
+            var input = document.getElementById(labels[i].htmlFor)
+            if (input)
+                input.label = labels[i]
+                input.label.style.color = color
+                break
+        }
+    }
+}
+
+function changeInputColor(inputId, color) {
+    var input = document.getElementById(inputId)
+    input.style.backgroundColor = color
+}
+
 class ConnectedUpdateForm extends Component {
     constructor(props) {
         super(props)
@@ -23,6 +41,10 @@ class ConnectedUpdateForm extends Component {
 
         this.handleChange = this.handleChange.bind(this)
         this.handleUpdate = this.handleUpdate.bind(this)
+        this.handleMouseOverLabel = this.handleMouseOverLabel.bind(this)
+        this.handleMouseOutLabel = this.handleMouseOutLabel.bind(this)
+        this.handleMouseOverInput = this.handleMouseOverInput.bind(this)
+        this.handleMouseOutInput = this.handleMouseOutInput.bind(this)
     }
 
     componentDidMount() {
@@ -65,29 +87,53 @@ class ConnectedUpdateForm extends Component {
         this.props.hideUpdatePlace()
     }
 
+    handleMouseOverInput(event) {
+        event.preventDefault()
+        changeLabelColor(event.target.id, "gold")
+        changeInputColor(event.target.id, "gold")
+    }
+
+    handleMouseOutInput(event) {
+        event.preventDefault()
+        changeLabelColor(event.target.id, "orange")
+        changeInputColor(event.target.id, "orange")
+    }
+
+    handleMouseOverLabel(event) {
+        event.preventDefault()
+        changeLabelColor(event.target.htmlFor, "gold")
+        changeInputColor(event.target.htmlFor, "gold")
+    }
+
+    handleMouseOutLabel(event) {
+        event.preventDefault()
+        changeLabelColor(event.target.htmlFor, "orange")
+        changeInputColor(event.target.htmlFor, "orange")
+    }
+
     render() {
         return (
             <div className="updatePlaceForm" id="updatePlaceForm">
                 <form onSubmit={this.handleUpdate} autoComplete="off">
                     <div className="updatePlaceFormRow">
-                        <label htmlFor="updateTitle" className="updatePlaceLabel">Title</label>
-                        <input type="text" className="updatePlaceInput" id="updateTitle" value={this.state.updateTitle} onChange={this.handleChange} autoFocus />
+                        <label htmlFor={"updateTitle" + this.state.id} className="updatePlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Title</label>
+                        <input type="text" className="updatePlaceInput" id={"updateTitle" + this.state.id} value={this.state.updateTitle} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} autoFocus />
                     </div>
                     <div className="updatePlaceFormRow">
-                        <label htmlFor="updateDescription" className="updatePlaceLabel">Description</label>
-                        <input type="text" className="updatePlaceInput" id="updateDescription" value={this.state.updateDescription} onChange={this.handleChange} />
+                        <label htmlFor={"updateDescription" + this.state.id} className="updatePlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Description</label>
+                        <input type="text" className="updatePlaceInput" id={"updateDescription" + this.state.id} value={this.state.updateDescription} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                     </div>
                     <div className="updatePlaceFormRow">
-                        <label htmlFor="updateLatitude" className="updatePlaceLabel">Latitude</label>
-                        <input type="text" className="updatePlaceInput" id="updateLatitude" value={this.state.updateLatitude} onChange={this.handleChange} />
+                        <label htmlFor={"updateLatitude" + this.state.id} className="updatePlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Latitude</label>
+                        <input type="text" className="updatePlaceInput" id={"updateLatitude" + this.state.id} value={this.state.updateLatitude} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                     </div>
                     <div className="updatePlaceFormRow">
-                        <label htmlFor="updateLongitude" className="updatePlaceLabel">Longitude</label>
-                        <input type="text" className="updatePlaceInput" id="updateLongitude" value={this.state.updateLongitude} onChange={this.handleChange} />
+                        <label htmlFor={"updateLongitude" + this.state.id} className="updatePlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Longitude</label>
+                        <input type="text" className="updatePlaceInput" id={"updateLongitude" + this.state.id} value={this.state.updateLongitude} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                     </div>
                     <div className="updatePlaceFormRow">
-                        <label htmlFor="updateOpeningHours" className="updatePlaceLabel">Opening hours</label>
-                        <input type="text" className="updatePlaceInput" id="updateOpeningHours" value={this.state.updateOpeningHours} onChange={this.handleChange} />
+                        <label htmlFor={"updateOpeningHours" + this.state.id} className="updatePlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Opening hours</label>
+                        <input type="text" className="updatePlaceInput" id={"updateOpeningHours" + this.state.id} value={this.state.updateOpeningHours} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                     </div>
                     <button type="submit" className="updatePlaceSaveButton">Save</button>
                 </form>

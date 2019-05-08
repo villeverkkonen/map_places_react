@@ -39,6 +39,7 @@ class ConnectedPlace extends Component {
         if (this.state.showPlace) {
             titleText.style.color = "orange"
             placeDiv.classList.remove("linearGradient")
+            this.hideUpdatePlace()
         } else {
             titleText.style.color = "gold"
             placeDiv.classList.add("linearGradient")
@@ -70,11 +71,13 @@ class ConnectedPlace extends Component {
             <div key={this.props.place.id} className="placeListObject" id={placeDivId}>
                 <span onClick={this.toggleShowPlace} className="placeListTitle" id={placeListTitleId}>{this.props.place.title}</span>
                 {this.state.showPlace ?
-                    <div>
+                    <div className="placeInfo">
                         <span>{this.props.place.description}</span><br/>
                         <span>Open: {this.props.place.openingHours}</span><br/>
-                        <button onClick={this.handleDeletePlace} className="deletePlaceButton">Delete</button>
-                        <button onClick={this.toggleUpdatePlace} className="updatePlaceButton" id="updatePlaceButton">Update</button>
+                        <div className="placeButtons">
+                            <button onClick={this.handleDeletePlace} className="deletePlaceButton">Delete</button>
+                            <button onClick={this.toggleUpdatePlace} className="updatePlaceButton" id="updatePlaceButton">Update</button>
+                        </div>
                         {this.state.showUpdateForm ?
                             <UpdatePlaceForm
                                 place={this.props.place}

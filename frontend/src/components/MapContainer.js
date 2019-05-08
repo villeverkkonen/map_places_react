@@ -5,7 +5,10 @@ import InfoWindowEx from './InfoWindowEx'
 import mapService from '../services/maps'
 
 const mapStateToProps = state => {
-  return { places: state.places };
+  return {
+    places: state.placeReducer.places,
+    markers: state.markerReducer.markers
+  }
 }
 
 export class ConnectedContainer extends Component {
@@ -15,8 +18,7 @@ export class ConnectedContainer extends Component {
     this.state = {
       activeMarker: {},
       selectedPlace: {},
-      apiKey: '',
-      markers: []
+      apiKey: ''
     }
 
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this)
@@ -48,15 +50,17 @@ export class ConnectedContainer extends Component {
             lng: 24.945831
           }}
         >
-          {this.props.places.map(place =>
-                <Marker
-                    key={place.id}
-                    position={{lat: place.latitude, lng: place.longitude}}
-                    title={place.title}
-                    place_={place}
-                    onClick={this.toggleInfoWindow}
-                />
-            )}
+          {this.props.places ?
+              this.props.places.map(place =>
+                  <Marker
+                      key={place.id}
+                      position={{lat: place.latitude, lng: place.longitude}}
+                      title={place.title}
+                      place_={place}
+                      onClick={this.toggleInfoWindow}
+                  />
+                )
+            : null}
             <InfoWindowEx
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}

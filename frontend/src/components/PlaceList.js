@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { fetchPlaces } from '../actions/PlaceActions'
 
 const mapStateToProps = state => ({
-    places: state.places,
-    loading: state.loading,
-    error: state.error
+    places: state.placeReducer.places,
+    loading: state.placeReducer.loading,
+    error: state.placeReducer.error
 })
 
 class ConnectedList extends React.Component {
@@ -24,12 +24,14 @@ class ConnectedList extends React.Component {
         }
         return(
             <div className="placesList">
-                {places.map(place =>
-                    <Place
-                        key={place.id}
-                        place={place}
-                    />
-                )}
+                {places ?
+                    places.map(place =>
+                        <Place
+                            key={place.id}
+                            place={place}
+                        />
+                    )
+                : null}
             </div>
         )
     }

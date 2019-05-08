@@ -1,3 +1,39 @@
+@media only screen and (max-width: 800px) {
+    #alignedDivs {
+        display: block;
+        flex-direction: unset;
+        justify-content: unset;
+        min-width: 100%;
+        width: min-content;
+    }
+    
+    #leftDiv {
+        flex: none;
+        display: block;
+    }
+    
+    #rightDiv {
+        display: block;
+        flex: none;
+        text-align: left;
+        width: auto;
+    }
+
+    .updatePlaceForm {
+        margin-top: 5px;
+        float: none;
+        clear: none;
+    }
+
+    .linearGradient {
+        background-image: linear-gradient(to right, #282828 , #000000);
+    }
+
+    .createPlaceInput, .updatePlaceInput {
+        margin-left: 150px;
+    }
+}
+
 @media only screen and (max-width: 450px) {
     .createPlaceLabel, .updatePlaceLabel {
         float: none;
