@@ -1,5 +1,5 @@
 {
-  "name": "map_places_backend",
+  "name": "map_places_react",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,6 +14,7 @@
   },
   "author": "Ville Verkkonen",
   "license": "ISC",
+  "homepage": "https://map-places-react.herokuapp.com/",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",

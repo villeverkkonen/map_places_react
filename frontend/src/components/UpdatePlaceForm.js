@@ -60,7 +60,7 @@ class ConnectedUpdateForm extends Component {
 
     handleChange(event) {
         this.setState({
-            [event.target.id]: event.target.value
+            [event.target.dataset.id]: event.target.value
         })
     }
 
@@ -117,23 +117,23 @@ class ConnectedUpdateForm extends Component {
                 <form onSubmit={this.handleUpdate} autoComplete="off">
                     <div className="updatePlaceFormRow">
                         <label htmlFor={"updateTitle" + this.state.id} className="updatePlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Title</label>
-                        <input type="text" className="updatePlaceInput" id={"updateTitle" + this.state.id} value={this.state.updateTitle} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} autoFocus />
+                        <input type="text" className="updatePlaceInput" id={"updateTitle" + this.state.id} data-id="updateTitle" value={this.state.updateTitle} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} autoFocus />
                     </div>
                     <div className="updatePlaceFormRow">
                         <label htmlFor={"updateDescription" + this.state.id} className="updatePlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Description</label>
-                        <input type="text" className="updatePlaceInput" id={"updateDescription" + this.state.id} value={this.state.updateDescription} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
+                        <input type="text" className="updatePlaceInput" id={"updateDescription" + this.state.id} data-id="updateDescription" value={this.state.updateDescription} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                     </div>
                     <div className="updatePlaceFormRow">
                         <label htmlFor={"updateLatitude" + this.state.id} className="updatePlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Latitude</label>
-                        <input type="text" className="updatePlaceInput" id={"updateLatitude" + this.state.id} value={this.state.updateLatitude} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
+                        <input type="text" className="updatePlaceInput" id={"updateLatitude" + this.state.id} data-id="updateLatitude" value={this.state.updateLatitude} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                     </div>
                     <div className="updatePlaceFormRow">
                         <label htmlFor={"updateLongitude" + this.state.id} className="updatePlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Longitude</label>
-                        <input type="text" className="updatePlaceInput" id={"updateLongitude" + this.state.id} value={this.state.updateLongitude} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
+                        <input type="text" className="updatePlaceInput" id={"updateLongitude" + this.state.id} data-id="updateLongitude" value={this.state.updateLongitude} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                     </div>
                     <div className="updatePlaceFormRow">
                         <label htmlFor={"updateOpeningHours" + this.state.id} className="updatePlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Opening hours</label>
-                        <input type="text" className="updatePlaceInput" id={"updateOpeningHours" + this.state.id} value={this.state.updateOpeningHours} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
+                        <input type="text" className="updatePlaceInput" id={"updateOpeningHours" + this.state.id} data-id="updateOpeningHours" value={this.state.updateOpeningHours} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                     </div>
                     <button type="submit" className="updatePlaceSaveButton">Save</button>
                 </form>
