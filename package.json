@@ -2,7 +2,7 @@
   "name": "map_places_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "backend/index.js",
   "scripts": {
     "start": "node backend/index.js",
     "watch": "nodemon backend/index.js",
