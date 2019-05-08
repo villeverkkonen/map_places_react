@@ -24,7 +24,7 @@ mongoose.Promise = global.Promise
 
 app.use(cors())
 app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, 'backend/build')))
+app.use(express.static(build))
 
 app.use(middleware.logger)
 app.use('/api/places', placesRouter)
