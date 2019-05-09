@@ -6,6 +6,7 @@ const middleware = require('./utils/middleware')
 const bodyParser = require('body-parser')
 const placesRouter = require('./controllers/places')
 const mapsRouter = require('./controllers/maps')
+const keywordsRouter = require('./controllers/keywords')
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
@@ -29,6 +30,7 @@ app.use(express.static('build'))
 app.use(middleware.logger)
 app.use('/api/places', placesRouter)
 app.use('/api/maps', mapsRouter)
+app.use('/api/keywords', keywordsRouter)
 app.use(middleware.error)
 
 const PORT = process.env.PORT || 3001

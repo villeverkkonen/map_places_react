@@ -26,7 +26,7 @@ function changeInputColor(inputId, color) {
     input.style.backgroundColor = color
 }
 
-class ConnectedForm extends Component {
+class ConnectedPlaceForm extends Component {
     constructor() {
         super();
 
@@ -154,7 +154,7 @@ class ConnectedForm extends Component {
                             <label htmlFor="openingHours" className="createPlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Opening hours</label>
                             <input type="text" className="createPlaceInput" id="openingHours" value={this.state.openingHours} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                         </div>
-                        <button type="submit" className="createPlaceSaveButton">Save</button>
+                        <button type="submit" className="createPlaceSaveButton">Save place</button>
                     </form>
                 </div>
             </div>
@@ -162,6 +162,6 @@ class ConnectedForm extends Component {
     }
 }
 
-const PlaceForm = connect(null, mapDispatchToProps)(ConnectedForm)
+const PlaceForm = connect(null, mapDispatchToProps)(ConnectedPlaceForm)
 
 export default PlaceForm

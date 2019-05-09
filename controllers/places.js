@@ -95,7 +95,8 @@ const formatPlace = (place) => {
         latitude: place.latitude,
         longitude: place.longitude,
         openingHours: place.openingHours,
-        id: place._id
+        id: place._id,
+        keywords: place.keywords
       }
   }
 

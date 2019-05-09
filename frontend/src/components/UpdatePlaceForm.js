@@ -26,7 +26,7 @@ function changeInputColor(inputId, color) {
     input.style.backgroundColor = color
 }
 
-class ConnectedUpdateForm extends Component {
+class ConnectedUpdatePlaceForm extends Component {
     constructor(props) {
         super(props)
 
@@ -135,13 +135,13 @@ class ConnectedUpdateForm extends Component {
                         <label htmlFor={"updateOpeningHours" + this.state.id} className="updatePlaceLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Opening hours</label>
                         <input type="text" className="updatePlaceInput" id={"updateOpeningHours" + this.state.id} data-id="updateOpeningHours" value={this.state.updateOpeningHours} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} />
                     </div>
-                    <button type="submit" className="updatePlaceSaveButton">Save</button>
+                    <button type="submit" className="updatePlaceSaveButton">Save place</button>
                 </form>
             </div>
         )
     }
 }
 
-const UpdatePlaceForm = connect(null, mapDispatchToProps)(ConnectedUpdateForm)
+const UpdatePlaceForm = connect(null, mapDispatchToProps)(ConnectedUpdatePlaceForm)
 
 export default UpdatePlaceForm

@@ -5,7 +5,8 @@ const Place = mongoose.model('Place', {
     description: String,
     latitude: String,
     longitude: String,
-    openingHours: String
+    openingHours: String,
+    keywords: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Keyword' }]
   })
 
 module.exports = Place

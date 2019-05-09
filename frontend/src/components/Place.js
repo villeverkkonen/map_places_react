@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { deletePlace } from '../actions/PlaceActions'
+import KeywordList from './KeywordList'
+import KeywordForm from './KeywordForm'
 import UpdatePlaceForm from './UpdatePlaceForm'
 
 const mapDispatchToProps = (dispatch) => {
@@ -22,10 +24,6 @@ class ConnectedPlace extends Component {
         this.toggleShowPlace = this.toggleShowPlace.bind(this)
         this.toggleUpdatePlace = this.toggleUpdatePlace.bind(this)
         this.hideUpdatePlace = this.hideUpdatePlace.bind(this)
-    }
-
-    componentDidMount() {
-        this.setState({ place: this.props.place })
     }
 
     handleDeletePlace() {
@@ -65,18 +63,19 @@ class ConnectedPlace extends Component {
     }
 
     render() {
-        const placeDivId = "placeListObject" + this.props.place.id
-        const placeListTitleId = "placeListTitle" + this.props.place.id
         return (
-            <div key={this.props.place.id} className="placeListObject" id={placeDivId}>
-                <span onClick={this.toggleShowPlace} className="placeListTitle" id={placeListTitleId}>{this.props.place.title}</span>
+            <div key={this.props.place.id} className="placeListObject" id={"placeListObject" + this.props.place.id}>
+                <span onClick={this.toggleShowPlace} className="placeListTitle" id={"placeListTitle" + this.props.place.id}>{this.props.place.title}</span>
                 {this.state.showPlace ?
                     <div className="placeInfo">
                         <span>{this.props.place.description}</span><br/>
                         <span>Open: {this.props.place.openingHours}</span><br/>
+                        <p>Keywords:</p>
+                        <KeywordList place={this.props.place} />
+                        <KeywordForm place={this.props.place} />
                         <div className="placeButtons">
-                            <button onClick={this.handleDeletePlace} className="deletePlaceButton">Delete</button>
-                            <button onClick={this.toggleUpdatePlace} className="updatePlaceButton" id="updatePlaceButton">Update</button>
+                            <button onClick={this.handleDeletePlace} className="deletePlaceButton">Delete place</button>
+                            <button onClick={this.toggleUpdatePlace} className="updatePlaceButton" id="updatePlaceButton">Update place</button>
                         </div>
                         {this.state.showUpdateForm ?
                             <UpdatePlaceForm

@@ -35,26 +35,26 @@ code {
   width: fit-content;
 }
 
-.placesList {
+.placesList, .keywordsList {
   z-index: 1;
   position: relative;
 }
 
-.placeListTitle:hover {
+.placeListTitle:hover, .keywordListTitle:hover {
   color: gold !important;
   cursor: pointer;
 }
 
-.placeListTitle {
+.placeListTitle, .keywordListTitle {
   color: orange;
   font-weight: bold;
 }
 
-.placeTitle:hover {
+.placeTitle:hover, .keywordTitle:hover {
   cursor: pointer;
 }
 
-.placeListObject {
+.placeListObject, .keywordListObject {
   margin-top: 5px;
   padding: 0 5px 5px 5px;
   clear: both;
@@ -67,4 +67,8 @@ code {
 
 .goldenButton {
   background-color: gold !important;
+}
+
+.keywordInfo {
+  margin-bottom: 10px;
 }

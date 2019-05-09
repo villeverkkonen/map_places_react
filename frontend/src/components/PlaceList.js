@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
     error: state.placeReducer.error
 })
 
-class ConnectedList extends React.Component {
+class ConnectedPlaceList extends React.Component {
     componentDidMount() {
         this.props.dispatch(fetchPlaces())
     }
@@ -37,6 +37,6 @@ class ConnectedList extends React.Component {
     }
 }
 
-const PlaceList = connect(mapStateToProps)(ConnectedList)
+const PlaceList = connect(mapStateToProps)(ConnectedPlaceList)
 
 export default PlaceList

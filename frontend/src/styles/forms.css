@@ -1,22 +1,24 @@
-.createPlaceForm {
+.createPlaceForm, .createKeywordForm {
     margin-top: 10px;
     margin-bottom: 20px;
     z-index: 1;
     position: relative;
 }
 
-.updatePlaceForm {
+.updatePlaceForm, .updateKeywordForm, .createKeywordForm {
     margin-top: 10px;
     margin-bottom: 10px;
     float: right;
     clear: both;
 }
 
-.createPlaceLabel, .updatePlaceLabel {
+.createPlaceLabel, .updatePlaceLabel,
+.createKeywordLabel, .updateKeywordLabel {
     float: left;
 }
   
-.createPlaceInput, .updatePlaceInput {
+.createPlaceInput, .updatePlaceInput,
+.createKeywordInput, .updateKeywordInput {
     display: block;
     margin-left: 15vw;
     background-color: orange;
@@ -25,7 +27,8 @@
     padding: 5px;
 }
 
-.createPlaceInput:focus, .updatePlaceInput:focus {
+.createPlaceInput:focus, .updatePlaceInput:focus,
+.createKeywordInput:focus, .updateKeywordInput:focus {
     background-color: gold !important;
 }
   
@@ -33,7 +36,12 @@
 .createPlaceSaveButton,
 .deletePlaceButton,
 .updatePlaceButton,
-.updatePlaceSaveButton {
+.updatePlaceSaveButton,
+.addKeywordButton,
+.createKeywordSaveButton,
+.deleteKeywordButton,
+.updateKeywordButton,
+.updateKeywordSaveButton {
     background-color: orange;
     cursor: pointer;
     padding: 5px;
@@ -47,29 +55,48 @@
 .createPlaceSaveButton:hover,
 .deletePlaceButton:hover,
 .updatePlaceButton:hover,
-.updatePlaceSaveButton:hover {
+.updatePlaceSaveButton:hover,
+.addKeywordButton:hover,
+.createKeywordSaveButton:hover,
+.deleteKeywordButton:hover,
+.updateKeywordButton:hover,
+.updateKeywordSaveButton:hover {
     background-color: gold;
 }
 
-.deletePlaceButton {
+.deletePlaceButton,
+.deleteKeywordButton {
     margin-top: 5px;
     margin-right: 5px;
 }
 
-.updatePlaceButton {
+.updatePlaceButton,
+.updateKeywordButton {
     margin-top: 5px;
     margin-left: 5px;
 }
 
-.updatePlaceSaveButton {
+.updatePlaceSaveButton,
+.updateKeywordSaveButton {
     margin-top: 10px;
     margin-left: 150px;
 }
 
-.createPlaceSaveButton {
+.createPlaceSaveButton,
+.createKeywordSaveButton {
     margin-top: 10px;
 }
 
-.createPlaceFormRow, .updatePlaceFormRow {
+.createPlaceFormRow, .updatePlaceFormRow,
+.createKeywordFormRow, .updateKeywordFormRow {
     margin-top: 5px;
+}
+
+.placeButtons {
+    clear: both;
+}
+
+.addKeywordButton {
+    float: right;
+    clear: both;
 }
