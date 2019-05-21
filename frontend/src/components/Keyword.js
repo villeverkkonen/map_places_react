@@ -21,11 +21,11 @@ class ConnectedKeyword extends Component {
         this.handleDeleteKeyword = this.handleDeleteKeyword.bind(this)
         this.toggleShowKeyword = this.toggleShowKeyword.bind(this)
         this.toggleUpdateKeyword = this.toggleUpdateKeyword.bind(this)
-        this.hideupdateKeyword = this.hideUpdateKeyword.bind(this)
+        this.hideUpdateKeyword = this.hideUpdateKeyword.bind(this)
     }
 
     handleDeleteKeyword() {
-        this.props.deleteKeyword(this.props.keyword.id)
+        this.props.deleteKeyword(this.props.keyword.id, this.props.place.id)
     }
 
     toggleShowKeyword() {
@@ -35,7 +35,7 @@ class ConnectedKeyword extends Component {
         if (this.state.showKeyword) {
             titleText.style.color = "orange"
             keywordDiv.classList.remove("linearGradient")
-            this.hideupdateKeyword()
+            this.hideUpdateKeyword()
         } else {
             titleText.style.color = "gold"
             keywordDiv.classList.add("linearGradient")

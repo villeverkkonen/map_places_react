@@ -1,24 +1,31 @@
-.createPlaceForm, .createKeywordForm {
+.createPlaceForm,
+.createKeywordForm {
     margin-top: 10px;
     margin-bottom: 20px;
     z-index: 1;
     position: relative;
 }
 
-.updatePlaceForm, .updateKeywordForm, .createKeywordForm {
+.updatePlaceForm,
+.updateKeywordForm,
+.createKeywordForm {
     margin-top: 10px;
     margin-bottom: 10px;
     float: right;
     clear: both;
 }
 
-.createPlaceLabel, .updatePlaceLabel,
-.createKeywordLabel, .updateKeywordLabel {
+.createPlaceLabel,
+.updatePlaceLabel,
+.createKeywordLabel,
+.updateKeywordLabel {
     float: left;
 }
   
-.createPlaceInput, .updatePlaceInput,
-.createKeywordInput, .updateKeywordInput {
+.createPlaceInput,
+.updatePlaceInput,
+.createKeywordInput,
+.updateKeywordInput {
     display: block;
     margin-left: 15vw;
     background-color: orange;
@@ -27,8 +34,10 @@
     padding: 5px;
 }
 
-.createPlaceInput:focus, .updatePlaceInput:focus,
-.createKeywordInput:focus, .updateKeywordInput:focus {
+.createPlaceInput:focus,
+.updatePlaceInput:focus,
+.createKeywordInput:focus,
+.updateKeywordInput:focus {
     background-color: gold !important;
 }
   
@@ -87,8 +96,10 @@
     margin-top: 10px;
 }
 
-.createPlaceFormRow, .updatePlaceFormRow,
-.createKeywordFormRow, .updateKeywordFormRow {
+.createPlaceFormRow,
+.updatePlaceFormRow,
+.createKeywordFormRow,
+.updateKeywordFormRow {
     margin-top: 5px;
 }
 

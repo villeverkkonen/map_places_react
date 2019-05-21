@@ -33,7 +33,7 @@ class ConnectedUpdateKeywordForm extends Component {
         this.state = {
             updateKeywordTitle: "",
             id: "",
-            place: ""
+            placeId: ""
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -48,7 +48,7 @@ class ConnectedUpdateKeywordForm extends Component {
         this.setState({
             updateKeywordTitle: this.props.keyword.title,
             id: this.props.keyword.id,
-            place: this.props.place.id
+            placeId: this.props.place.id
         })
     }
 
@@ -64,6 +64,7 @@ class ConnectedUpdateKeywordForm extends Component {
         this.props.updateKeyword({
             title: this.state.updateKeywordTitle,
             id: this.state.id
+            // placeId: this.state.placeId
         })
 
         this.setState({
@@ -103,7 +104,7 @@ class ConnectedUpdateKeywordForm extends Component {
                 <form onSubmit={this.handleUpdate} autoComplete="off">
                     <div className="updateKeywordFormRow">
                         <label htmlFor={"updateKeywordTitle" + this.state.id} className="updateKeywordLabel" onMouseOver={this.handleMouseOverLabel} onMouseOut={this.handleMouseOutLabel}>Title</label>
-                        <input type="text" className="updateKeywordInput" id={"updateKeywordTitle" + this.state.id} data-id="updateKeywordTitle" value={this.state.updateTitle} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} autoFocus />
+                        <input type="text" className="updateKeywordInput" id={"updateKeywordTitle" + this.state.id} data-id="updateKeywordTitle" value={this.state.updateKeywordTitle} onChange={this.handleChange} onMouseOver={this.handleMouseOverInput} onMouseOut={this.handleMouseOutInput} autoFocus />
                     </div>
                     <button type="submit" className="updateKeywordSaveButton">Save keyword</button>
                 </form>

@@ -70,7 +70,6 @@ class ConnectedPlace extends Component {
                     <div className="placeInfo">
                         <span>{this.props.place.description}</span><br/>
                         <span>Open: {this.props.place.openingHours}</span><br/>
-                        <p>Keywords:</p>
                         <KeywordList place={this.props.place} />
                         <KeywordForm place={this.props.place} />
                         <div className="placeButtons">

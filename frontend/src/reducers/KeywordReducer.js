@@ -36,11 +36,11 @@ import {
           }
         case CREATE_KEYWORD:
           return Object.assign({}, state, {
-              keywords: state.keywords.concat(action.data)
+            keywords: state.keywords.concat(action.data)
           })
         case DELETE_KEYWORD:
           return Object.assign({}, state, {
-              keywords: state.keywords.filter(keyword => keyword.id !== action.data.id)
+            keywords: state.keywords.filter(keyword => keyword.id !== action.data.id)
           })
         case UPDATE_KEYWORD:
           return Object.assign({}, state, {

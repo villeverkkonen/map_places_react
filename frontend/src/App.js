@@ -1,12 +1,12 @@
 import React from 'react'
-import MapContainer from './components/MapContainer'
+import GoogleMap from './components/GoogleMap'
 import PlaceForm from './components/PlaceForm'
 import PlaceList from './components/PlaceList'
 
 const App = () => {
   return (
     <div className="content">
-      <MapContainer />
+      <GoogleMap />
       <div id="alignedDivs">
         <div id="leftDiv">
           <PlaceForm />

@@ -35,26 +35,31 @@ code {
   width: fit-content;
 }
 
-.placesList, .keywordsList {
+.placesList,
+.keywordsList {
   z-index: 1;
   position: relative;
 }
 
-.placeListTitle:hover, .keywordListTitle:hover {
+.placeListTitle:hover,
+.keywordListTitle:hover {
   color: gold !important;
   cursor: pointer;
 }
 
-.placeListTitle, .keywordListTitle {
+.placeListTitle,
+.keywordListTitle {
   color: orange;
   font-weight: bold;
 }
 
-.placeTitle:hover, .keywordTitle:hover {
+.placeTitle:hover,
+.keywordTitle:hover {
   cursor: pointer;
 }
 
-.placeListObject, .keywordListObject {
+.placeListObject,
+.keywordListObject {
   margin-top: 5px;
   padding: 0 5px 5px 5px;
   clear: both;
@@ -71,4 +76,8 @@ code {
 
 .keywordInfo {
   margin-bottom: 10px;
+}
+
+.keywordListTitle {
+  margin-bottom: 0;
 }

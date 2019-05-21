@@ -36,11 +36,11 @@ const PlaceReducer = (state = initialState, action) => {
         }
       case CREATE_PLACE:
         return Object.assign({}, state, {
-            places: state.places.concat(action.data)
+          places: state.places.concat(action.data)
         })
       case DELETE_PLACE:
         return Object.assign({}, state, {
-            places: state.places.filter(place => place.id !== action.data.id)
+          places: state.places.filter(place => place.id !== action.data.id)
         })
       case UPDATE_PLACE:
         return Object.assign({}, state, {

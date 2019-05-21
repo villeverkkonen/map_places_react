@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 })
 
 class ConnectedKeywordList extends React.Component {
+
     componentDidMount() {
         this.props.dispatch(fetchKeywords())
     }
@@ -22,15 +23,19 @@ class ConnectedKeywordList extends React.Component {
         if (loading && keywords.length > 0) {
             return <div>Loading...</div>
         }
+
         return(
             <div className="keywordsList">
+                <p className="keywordListTitle">Keywords:</p>
                 {keywords ?
                     keywords.map(keyword =>
-                        <Keyword
-                            key={keyword.id}
-                            keyword={keyword}
-                            place={this.props.place}
-                        />
+                        keyword.place && keyword.place._id === this.props.place.id ?
+                            <Keyword
+                                key={keyword.id}
+                                keyword={keyword}
+                                place={this.props.place}
+                            />
+                        : null
                     )
                 : null}
             </div>

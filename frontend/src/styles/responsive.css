@@ -19,17 +19,28 @@
         width: auto;
     }
 
-    .updatePlaceForm {
+    .updatePlaceForm,
+    .updateKeywordForm,
+    .createKeywordForm {
         margin-top: 5px;
         float: none;
         clear: none;
+    }
+
+    .addKeywordButton {
+        float: none;
+    }
+
+    .updateKeywordSaveButton {
+        margin-left: 0;
     }
 
     .linearGradient {
         background-image: linear-gradient(to right, #282828 , #000000);
     }
 
-    .createPlaceInput, .updatePlaceInput {
+    .createPlaceInput,
+    .updatePlaceInput {
         margin-left: 150px;
     }
 }
@@ -40,12 +51,22 @@
         width: 100%;
     }
 
-    .createPlaceInput, .updatePlaceInput {
+    .createPlaceInput,
+    .updatePlaceInput {
         margin-left: 0;
         width: 100%;
     }
 
-    .createPlaceSaveButton, .updatePlaceSaveButton {
+    .createPlaceSaveButton,
+    .updatePlaceSaveButton {
         margin-left: 0;
+    }
+
+    .deletePlaceButton,
+    .deleteKeywordButton,
+    .updatePlaceButton,
+    .updateKeywordButton {
+        margin: 10px 0 0 0;
+        display: block;
     }
 }

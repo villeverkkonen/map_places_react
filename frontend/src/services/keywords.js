@@ -16,8 +16,8 @@ const createKeyword = (keyword) => {
     return request.then(response => { return response.data })
 }
 
-const deleteKeyword = (id) => {
-    const request = axios.delete(baseUrl + id)
+const deleteKeyword = (keywordId, placeId) => {
+    const request = axios.delete(baseUrl + keywordId, placeId)
     return request.then(response => { return response.data })
 }
 

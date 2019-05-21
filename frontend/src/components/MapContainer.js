@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 import { connect } from "react-redux"
 import InfoWindowEx from './InfoWindowEx'
-import mapService from '../services/maps'
 
 const mapStateToProps = state => {
   return {
@@ -17,8 +16,7 @@ export class ConnectedContainer extends Component {
 
     this.state = {
       activeMarker: {},
-      selectedPlace: {},
-      apiKey: ''
+      selectedPlace: {}
     }
 
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this)
@@ -78,12 +76,8 @@ export class ConnectedContainer extends Component {
   }
 }
 
-const getApiKey = () => {
-  return mapService.getApiKey()
-}
-
 const MapContainer = connect(mapStateToProps)(ConnectedContainer)
 
-export default GoogleApiWrapper({
-  apiKey: getApiKey()
-})(MapContainer)
+export default GoogleApiWrapper(props => ({
+  apiKey: props.apiKey
+}))(MapContainer)

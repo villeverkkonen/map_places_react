@@ -26,7 +26,7 @@ export const createKeyword = content => {
 
     const keyword = {
         title: content.title,
-        place: content.place
+        placeId: content.placeId
     }
 
     return dispatch => {
@@ -40,14 +40,14 @@ export const createKeyword = content => {
     }
 }
 
-export const deleteKeyword = id => {
+export const deleteKeyword = (keywordId, placeId) => {
     return dispatch => {
-        keywordService.deleteKeyword(id)
+        keywordService.deleteKeyword(keywordId, placeId)
         .catch(err => {
             console.log(err)
         })
         .then(res => {
-            dispatch(dispatchDeleteKeyword(id))
+            dispatch(dispatchDeleteKeyword(keywordId))
         })
     }
 }
@@ -59,7 +59,7 @@ export const updateKeyword = keyword => {
             console.log(err)
         })
         .then(res => {
-            dispatch(dispatchUpdateKeyword(keyword))
+            dispatch(dispatchUpdateKeyword(res))
         })
     }
 }
