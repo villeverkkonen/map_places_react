@@ -25,7 +25,10 @@ class ConnectedKeyword extends Component {
     }
 
     handleDeleteKeyword() {
-        this.props.deleteKeyword(this.props.keyword.id, this.props.place.id)
+        this.props.deleteKeyword({
+            keywordId: this.props.keyword.id,
+            placeId: this.props.place.id
+        })
     }
 
     toggleShowKeyword() {

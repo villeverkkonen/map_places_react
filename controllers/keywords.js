@@ -72,20 +72,18 @@ keywordsRouter.post('/', async (req, res) => {
 })
 
 // Delete keyword
-keywordsRouter.delete('/:id', (req, res) => {
-    Keyword.findByIdAndRemove(req.params.keywordId)
-        .then(result  => {
+keywordsRouter.delete('/:id/:placeId', async (req, res) => {
+    await Keyword.findByIdAndRemove(req.params.id)
+        .then(async result => {
+            const place = await Place.findById(req.params.placeId)
+            place.keywords = place.keywords.filter(keyword => keyword.toString() !== req.params.id.toString())
+            await place.save()
+
             res.status(204).end()
         })
         .catch(error => {
             console.log(error)
             res.status(400).send({ error: 'malformatted id'})
-        })
-    console.log("PARAMS")
-    console.log(req.params)
-    Place.findById(req.body.placeId)
-        .then(place => {
-            place.keywords = place.keywords.filter(keyword => keyword === req.params.keywordId)
         })
 })
 

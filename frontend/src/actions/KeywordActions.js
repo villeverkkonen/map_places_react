@@ -40,14 +40,20 @@ export const createKeyword = content => {
     }
 }
 
-export const deleteKeyword = (keywordId, placeId) => {
+export const deleteKeyword = content => {
+
+    const keyword = {
+        keywordId: content.keywordId,
+        placeId: content.placeId
+    }
+
     return dispatch => {
-        keywordService.deleteKeyword(keywordId, placeId)
+        keywordService.deleteKeyword(keyword)
         .catch(err => {
             console.log(err)
         })
         .then(res => {
-            dispatch(dispatchDeleteKeyword(keywordId))
+            dispatch(dispatchDeleteKeyword(keyword.keywordId))
         })
     }
 }

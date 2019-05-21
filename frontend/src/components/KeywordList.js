@@ -26,7 +26,7 @@ class ConnectedKeywordList extends React.Component {
 
         return(
             <div className="keywordsList">
-                <p className="keywordListTitle">Keywords:</p>
+                <p className="keywordList">Keywords:</p>
                 {keywords ?
                     keywords.map(keyword =>
                         keyword.place && keyword.place._id === this.props.place.id ?
