@@ -81,3 +81,7 @@ code {
 .keywordList {
   margin-bottom: 0;
 }
+
+#keywordList {
+  list-style: none;
+}

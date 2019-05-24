@@ -11,11 +11,11 @@ const App = () => {
       <div id="alignedDivs">
         <div id="leftDiv">
           <PlaceForm />
+          <KeywordSearch />
         </div>
 
         <div id="rightDiv">
           <PlaceList />
-          <KeywordSearch />
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { fetchPlaces } from '../actions/PlaceActions'
 
 const mapStateToProps = state => ({
     places: state.placeReducer.places,
+    placesByQuery: state.placeReducer.placesByQuery,
     loading: state.placeReducer.loading,
     error: state.placeReducer.error
 })
@@ -24,14 +25,22 @@ class ConnectedPlaceList extends React.Component {
         }
         return(
             <div className="placesList">
-                {places ?
-                    places.map(place =>
+                {this.props.placesByQuery.length > 0
+                ?
+                    this.props.placesByQuery.map(place =>
                         <Place
                             key={place.id}
                             place={place}
                         />
                     )
-                : null}
+                :
+                    this.props.places.map(place =>
+                        <Place
+                            key={place.id}
+                            place={place}
+                        />
+                    )
+                }
             </div>
         )
     }

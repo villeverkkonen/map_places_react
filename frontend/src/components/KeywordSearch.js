@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchPlaces, getPlacesByQuery } from '../actions/PlaceActions'
+import { fetchKeywords } from '../actions/KeywordActions'
 
 const mapStateToProps = state => ({
     places: state.placeReducer.places,
-    placesByQuery: state.placeReducer.placesByQuery
+    placesByQuery: state.placeReducer.placesByQuery,
+    keywords: state.keywordReducer.keywords,
+    loading: state.placeReducer.loading,
+    error: state.placeReducer.error
 })
 
 class ConnectedKeywordSearch extends Component {
@@ -12,14 +16,20 @@ class ConnectedKeywordSearch extends Component {
         super(props);
 
         this.state = {
-            keywordSearchQuery: ''
+            keywordSearchQuery: '',
+            keywords: [],
+            uniqueKeywords: []
         }
 
         this.handleChange = this.handleChange.bind(this)
+        this.toggleKeywordListDisplay = this.toggleKeywordListDisplay.bind(this)
+        this.getUniqueKeywordsByTitle = this.getUniqueKeywordsByTitle.bind(this)
     }
 
     componentDidMount() {
         this.props.dispatch(fetchPlaces())
+        this.props.dispatch(fetchKeywords())
+        this.setState({ keywords: this.props.keywords })
     }
 
     handleChange(event) {
@@ -46,16 +56,62 @@ class ConnectedKeywordSearch extends Component {
         })
     }
 
-    render() {
-        return(
-            <div className="keywordSearch">
-                <p>Search places with keywords</p>
-                <input className="keywordSearchInput" id="keywordSearchQuery" onChange={this.handleChange} />
+    toggleKeywordListDisplay() {
+        const button = document.getElementById("toggleKeywordListButton")
+        const list = document.getElementById("keywordList")
+        if (list.style.display === "none") {
+            list.style.display = "block"
+            button.innerHTML = "Hide keywords"
+        } else {
+            list.style.display = "none"
+            button.innerHTML = "Show keywords"
+        }
+    }
 
-                <div>
-                    {this.props.placesByQuery.map(place =>
-                        <p key={place.id}>{place.title}</p>
-                    )}
+    getUniqueKeywordsByTitle(keywords) {
+        let uniqueKeywords = []
+
+        for (let i = 0; i < keywords.length; i++) {
+            let keywordAlreadyExists = false
+            for (let y = 0; y < uniqueKeywords.length; y++) {
+                if (uniqueKeywords[y].title === keywords[i].title) {
+                    keywordAlreadyExists = true
+                }
+            }
+            if (!keywordAlreadyExists) {
+                uniqueKeywords.push(keywords[i])
+            }
+        }
+        return uniqueKeywords
+    }
+
+    render() {
+        const listStyles = {
+            display: 'none'
+        }
+
+        const { error, loading, keywords } = this.props
+        if (error) {
+            return <div>Error! {error.message}</div>
+        }
+        if (loading && keywords.length > 0) {
+            return <div>Loading...</div>
+        }
+
+        return(
+            <div>
+                <div className="keywordSearch">
+                    <p>Search places with keywords</p>
+                    <input className="keywordSearchInput" id="keywordSearchQuery" onChange={this.handleChange} />
+                </div>
+
+                <div className="keywordList">
+                    <button onClick={this.toggleKeywordListDisplay} className="toggleKeywordListButton" id="toggleKeywordListButton">Show keywords</button>
+                    <ul style={listStyles} id="keywordList">
+                        {this.getUniqueKeywordsByTitle(keywords).map(keyword => {
+                            return <li key={keyword.id}>{keyword.title}</li>
+                        })}
+                    </ul>
                 </div>
             </div>
         )
