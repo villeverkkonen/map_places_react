@@ -43,6 +43,11 @@
     .updatePlaceInput {
         margin-left: 150px;
     }
+
+    .keywordSearch {
+        float: none;
+        clear: none;
+    }
 }
 
 @media only screen and (max-width: 450px) {

@@ -55,7 +55,7 @@ keywordsRouter.post('/', async (req, res) => {
         })
 
         const savedKeyword = await keyword.save()
-        savedKeyword.populate('place', { title: 1, description: 1, latitude: 1, longitude: 1, openingHours: 1 }).execPopulate()
+        savedKeyword.populate('place', { title: 1, description: 1, latitude: 1, longitude: 1, openingHours: 1, keywords: 1 }).execPopulate()
 
         place.keywords = place.keywords.concat(savedKeyword._id)
         await place.save()
@@ -101,7 +101,7 @@ keywordsRouter.put('/:id', async (req, res) => {
 
         const updatedKeyword = await Keyword
             .findByIdAndUpdate(req.params.id, keyword, { new: true })
-            .populate('place', { title: 1, description: 1, latitude: 1, longitude: 1, openingHours: 1 })
+            .populate('place', { title: 1, description: 1, latitude: 1, longitude: 1, openingHours: 1, keywords: 1 })
         
         if (updatedKeyword) {
             res.json(Keyword.format(updatedKeyword))

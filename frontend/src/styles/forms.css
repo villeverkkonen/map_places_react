@@ -1,3 +1,8 @@
+.keywordSearch {
+    float: right;
+    clear: both;
+}
+
 .createPlaceForm,
 .createKeywordForm {
     margin-top: 10px;
@@ -34,10 +39,18 @@
     padding: 5px;
 }
 
+.keywordSearchInput {
+    background-color: orange;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .createPlaceInput:focus,
 .updatePlaceInput:focus,
 .createKeywordInput:focus,
-.updateKeywordInput:focus {
+.updateKeywordInput:focus,
+.keywordSearchInput:focus {
     background-color: gold !important;
 }
   
@@ -70,6 +83,10 @@
 .deleteKeywordButton:hover,
 .updateKeywordButton:hover,
 .updateKeywordSaveButton:hover {
+    background-color: gold;
+}
+
+.keywordSearchInput:hover {
     background-color: gold;
 }
 

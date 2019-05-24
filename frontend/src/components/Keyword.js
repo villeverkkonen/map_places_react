@@ -26,8 +26,8 @@ class ConnectedKeyword extends Component {
 
     handleDeleteKeyword() {
         this.props.deleteKeyword({
-            keywordId: this.props.keyword.id,
-            placeId: this.props.place.id
+            keyword: this.props.keyword,
+            place: this.props.place
         })
     }
 

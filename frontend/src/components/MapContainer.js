@@ -6,6 +6,8 @@ import InfoWindowEx from './InfoWindowEx'
 const mapStateToProps = state => {
   return {
     places: state.placeReducer.places,
+    placesByQuery: state.placeReducer.placesByQuery,
+    keywordSearchQuery: state.placeReducer.keywordSearchQuery,
     markers: state.markerReducer.markers
   }
 }
@@ -48,27 +50,37 @@ export class ConnectedContainer extends Component {
             lng: 24.945831
           }}
         >
-          {this.props.places ?
-              this.props.places.map(place =>
-                  <Marker
-                      key={place.id}
-                      position={{lat: place.latitude, lng: place.longitude}}
-                      title={place.title}
-                      place_={place}
-                      onClick={this.toggleInfoWindow}
-                  />
-                )
-            : null}
-            <InfoWindowEx
-              marker={this.state.activeMarker}
-              visible={this.state.showingInfoWindow}
-            >
-              <div className="infoWindow">
-                <h3>{this.state.selectedPlace.title}</h3>
-                <p>{this.state.selectedPlace.description}</p>
-                <p>Open: {this.state.selectedPlace.openingHours}</p>
-              </div>
-            </InfoWindowEx>
+          {this.props.placesByQuery.length > 0 || this.props.keywordSearchQuery.length ?
+            this.props.placesByQuery.map(place =>
+              <Marker
+                key={place.id}
+                position={{lat: place.latitude, lng: place.longitude}}
+                title={place.title}
+                place_={place}
+                onClick={this.toggleInfoWindow}
+              />
+            )
+          :
+            this.props.places.map(place =>
+              <Marker
+                key={place.id}
+                position={{lat: place.latitude, lng: place.longitude}}
+                title={place.title}
+                place_={place}
+                onClick={this.toggleInfoWindow}
+              />
+            )
+          }
+          <InfoWindowEx
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+          >
+            <div className="infoWindow">
+              <h3>{this.state.selectedPlace.title}</h3>
+              <p>{this.state.selectedPlace.description}</p>
+              <p>Open: {this.state.selectedPlace.openingHours}</p>
+            </div>
+          </InfoWindowEx>
         </Map>
         
       </div>

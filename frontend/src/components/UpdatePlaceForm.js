@@ -73,7 +73,8 @@ class ConnectedUpdatePlaceForm extends Component {
             latitude: this.state.updateLatitude,
             longitude: this.state.updateLongitude,
             openingHours: this.state.updateOpeningHours,
-            id: this.state.id
+            id: this.state.id,
+            keywords: this.props.place.keywords
         })
 
         this.setState({

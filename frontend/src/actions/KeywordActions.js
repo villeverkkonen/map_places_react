@@ -7,6 +7,7 @@ import {
     FETCH_KEYWORDS_FAILURE
 } from '../constants/KeywordConstants'
 import keywordService from '../services/keywords'
+import { addKeywordToPlace, deleteKeywordFromPlace, updateKeywordForPlace } from './PlaceActions'
 
 export function fetchKeywords() {
     return async dispatch => {
@@ -36,24 +37,20 @@ export const createKeyword = content => {
         })
         .then(res => {
             dispatch(dispatchCreateKeyword(res))
+            dispatch(addKeywordToPlace(res))
         })
     }
 }
 
 export const deleteKeyword = content => {
-
-    const keyword = {
-        keywordId: content.keywordId,
-        placeId: content.placeId
-    }
-
     return dispatch => {
-        keywordService.deleteKeyword(keyword)
+        keywordService.deleteKeyword(content)
         .catch(err => {
             console.log(err)
         })
         .then(res => {
-            dispatch(dispatchDeleteKeyword(keyword.keywordId))
+            dispatch(dispatchDeleteKeyword(content))
+            dispatch(deleteKeywordFromPlace(content))
         })
     }
 }
@@ -66,6 +63,7 @@ export const updateKeyword = keyword => {
         })
         .then(res => {
             dispatch(dispatchUpdateKeyword(res))
+            dispatch(updateKeywordForPlace(res))
         })
     }
 }
@@ -95,10 +93,10 @@ const dispatchCreateKeyword = keyword => {
     }
 }
 
-const dispatchDeleteKeyword = id => {
+const dispatchDeleteKeyword = content => {
     return {
         type: DELETE_KEYWORD,
-        data: { id: id }
+        data: { id: content.keyword.id }
     }
 }
 
