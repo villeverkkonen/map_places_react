@@ -1,6 +1,6 @@
 # Map Places
 
-## React/Node/MongoDB app using Google Maps Api where you can create, show, update and delete places.
+## React/Node/MongoDB app using Google Maps Api where you can create, show, update and delete places and keywords.
 
 ### [App in Heroku](https://map-places-react.herokuapp.com/)
 
