@@ -24,6 +24,8 @@ class ConnectedKeywordSearch extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.toggleKeywordListDisplay = this.toggleKeywordListDisplay.bind(this)
         this.getUniqueKeywordsByTitle = this.getUniqueKeywordsByTitle.bind(this)
+        this.searchByKeyword = this.searchByKeyword.bind(this)
+        this.dispatchPlacesByQuery = this.dispatchPlacesByQuery.bind(this)
     }
 
     componentDidMount() {
@@ -37,6 +39,48 @@ class ConnectedKeywordSearch extends Component {
         this.setState({
             keywordSearchQuery
         })
+        this.dispatchPlacesByQuery(keywordSearchQuery)
+    }
+
+    toggleKeywordListDisplay() {
+        const button = document.getElementById("toggleKeywordListButton")
+        const list = document.getElementById("keywordList")
+        if (list.style.display === "none") {
+            list.style.display = "block"
+            button.innerHTML = "Hide keywords"
+        } else {
+            list.style.display = "none"
+            button.innerHTML = "Show keywords"
+        }
+
+        !button.classList.contains("goldenButton") ? button.classList.add("goldenButton") : button.classList.remove("goldenButton")
+    }
+
+    getUniqueKeywordsByTitle(keywords) {
+        let uniqueKeywords = []
+
+        for (let i = 0; i < keywords.length; i++) {
+            let keywordAlreadyExists = false
+            for (let y = 0; y < uniqueKeywords.length; y++) {
+                if (uniqueKeywords[y].title === keywords[i].title) {
+                    keywordAlreadyExists = true
+                }
+            }
+            if (!keywordAlreadyExists) {
+                uniqueKeywords.push(keywords[i])
+            }
+        }
+
+        return uniqueKeywords.sort((a, b) => a.title.localeCompare(b.title))
+    }
+
+    searchByKeyword = keyword => event => {
+        event.preventDefault()
+        this.setState({ keywordSearchQuery: keyword })
+        this.dispatchPlacesByQuery(keyword)
+    }
+
+    dispatchPlacesByQuery(keywordSearchQuery) {
         let placesByQuery = []
         // Compare search query to all keywords from places
         this.props.places.map((place, index) => {
@@ -56,35 +100,6 @@ class ConnectedKeywordSearch extends Component {
         })
     }
 
-    toggleKeywordListDisplay() {
-        const button = document.getElementById("toggleKeywordListButton")
-        const list = document.getElementById("keywordList")
-        if (list.style.display === "none") {
-            list.style.display = "block"
-            button.innerHTML = "Hide keywords"
-        } else {
-            list.style.display = "none"
-            button.innerHTML = "Show keywords"
-        }
-    }
-
-    getUniqueKeywordsByTitle(keywords) {
-        let uniqueKeywords = []
-
-        for (let i = 0; i < keywords.length; i++) {
-            let keywordAlreadyExists = false
-            for (let y = 0; y < uniqueKeywords.length; y++) {
-                if (uniqueKeywords[y].title === keywords[i].title) {
-                    keywordAlreadyExists = true
-                }
-            }
-            if (!keywordAlreadyExists) {
-                uniqueKeywords.push(keywords[i])
-            }
-        }
-        return uniqueKeywords
-    }
-
     render() {
         const listStyles = {
             display: 'none'
@@ -102,14 +117,14 @@ class ConnectedKeywordSearch extends Component {
             <div>
                 <div className="keywordSearch">
                     <p>Search places with keywords</p>
-                    <input className="keywordSearchInput" id="keywordSearchQuery" onChange={this.handleChange} />
+                    <input className="keywordSearchInput" id="keywordSearchQuery" onChange={this.handleChange} value={this.state.keywordSearchQuery} />
                 </div>
 
                 <div className="keywordList">
                     <button onClick={this.toggleKeywordListDisplay} className="toggleKeywordListButton" id="toggleKeywordListButton">Show keywords</button>
                     <ul style={listStyles} id="keywordList">
                         {this.getUniqueKeywordsByTitle(keywords).map(keyword => {
-                            return <li key={keyword.id}>{keyword.title}</li>
+                            return <li key={keyword.id} className="keywordListItem" onClick={this.searchByKeyword(keyword.title)}>{keyword.title}</li>
                         })}
                     </ul>
                 </div>

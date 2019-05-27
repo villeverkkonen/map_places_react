@@ -58,7 +58,8 @@
 .createKeywordSaveButton,
 .deleteKeywordButton,
 .updateKeywordButton,
-.updateKeywordSaveButton {
+.updateKeywordSaveButton,
+.toggleKeywordListButton {
     background-color: orange;
     cursor: pointer;
     padding: 5px;
@@ -77,7 +78,8 @@
 .createKeywordSaveButton:hover,
 .deleteKeywordButton:hover,
 .updateKeywordButton:hover,
-.updateKeywordSaveButton:hover {
+.updateKeywordSaveButton:hover,
+.toggleKeywordListButton:hover {
     background-color: gold;
 }
 

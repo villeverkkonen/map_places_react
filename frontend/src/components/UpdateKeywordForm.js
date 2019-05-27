@@ -64,7 +64,6 @@ class ConnectedUpdateKeywordForm extends Component {
         this.props.updateKeyword({
             title: this.state.updateKeywordTitle,
             id: this.state.id
-            // placeId: this.state.placeId
         })
 
         this.setState({

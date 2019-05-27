@@ -22,10 +22,11 @@ import {
             error: null
           }
         case FETCH_KEYWORDS_SUCCESS:
+          const keywords = action.data.keywords.sort()
           return {
             ...state,
             loading: false,
-            keywords: action.data.keywords
+            keywords: keywords
           }
         case FETCH_KEYWORDS_FAILURE:
           return {

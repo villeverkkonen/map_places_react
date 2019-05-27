@@ -85,3 +85,8 @@ code {
 #keywordList {
   list-style: none;
 }
+
+.keywordListItem:hover {
+  color: gold;
+  cursor: pointer;
+}
