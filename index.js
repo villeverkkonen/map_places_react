@@ -21,7 +21,6 @@ const options = {
 mongoose
   .connect(config.mongoUrl, options)
   .then(() => {
-    console.log('connected to database', config.mongoUrl)
   })
   .catch(err => {
     console.log(err)
