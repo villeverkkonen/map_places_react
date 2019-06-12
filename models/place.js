@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 
 const placeSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    latitude: String,
-    longitude: String,
-    openingHours: String,
-    keywords: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Keyword' }]
+  title: String,
+  description: String,
+  latitude: String,
+  longitude: String,
+  openingHours: String,
+  keywords: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Keyword' }]
 })
 
 placeSchema.statics.format = (place) => {
