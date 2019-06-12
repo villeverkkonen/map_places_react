@@ -54,12 +54,8 @@ const PlaceReducer = (state = initialState, action) => {
           places: state.places.map(place => place.id !== action.data.place.id ? place : action.data.place)
         })
       case PLACES_BY_QUERY:
-        let placesByQuery = []
-        action.data.placesByQuery.map(place =>
-          placesByQuery = placesByQuery.concat(place)
-        )
         return Object.assign({}, state, {
-          placesByQuery: placesByQuery,
+          placesByQuery: action.data.placesByQuery,
           keywordSearchQuery: action.data.keywordSearchQuery
         })
       case ADD_KEYWORD_TO_PLACE:

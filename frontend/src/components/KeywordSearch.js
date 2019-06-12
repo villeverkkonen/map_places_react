@@ -86,7 +86,7 @@ class ConnectedKeywordSearch extends Component {
         this.props.places.map((place, index) => {
             if (place.keywords) {
                 place.keywords.map(keyword =>
-                    keywordSearchQuery.length > 0 && keyword.title.toLowerCase().includes(keywordSearchQuery.toLowerCase()) ?
+                    keywordSearchQuery.length > 0 && keyword.title.toLowerCase().startsWith(keywordSearchQuery.toLowerCase()) ?
                         !placesByQuery.includes(place) ?
                             placesByQuery = placesByQuery.concat(place)
                         : null
