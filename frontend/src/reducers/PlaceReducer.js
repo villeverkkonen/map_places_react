@@ -42,8 +42,10 @@ const PlaceReducer = (state = initialState, action) => {
           places: []
         }
       case CREATE_PLACE:
+        let newPlace = action.data
+        newPlace.keywords = []
         return Object.assign({}, state, {
-          places: state.places.concat(action.data)
+          places: state.places.concat(newPlace)
         })
       case DELETE_PLACE:
         return Object.assign({}, state, {
