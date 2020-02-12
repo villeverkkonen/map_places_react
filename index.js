@@ -15,8 +15,7 @@ const options = {
   useFindAndModify: false,
   keepAlive: 1000,
   connectTimeoutMS: 30000,
-  reconnectTries: 30,
-  reconnectInterval: 2000
+  useUnifiedTopology: true
 }
 mongoose
   .connect(config.mongoUrl, options)
@@ -29,7 +28,7 @@ mongoose.Promise = global.Promise
 
 app.use(cors())
 app.use(bodyParser.json())
-app.use(express.static('build'))
+app.use(express.static('frontend/build'))
 
 app.use(middleware.logger)
 app.use('/api/places', placesRouter)
