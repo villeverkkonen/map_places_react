@@ -91,5 +91,5 @@ export class ConnectedContainer extends Component {
 const MapContainer = connect(mapStateToProps)(ConnectedContainer)
 
 export default GoogleApiWrapper(props => ({
-  apiKey: props.apiKey
+  // apiKey: props.apiKey
 }))(MapContainer)
