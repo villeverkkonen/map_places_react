@@ -9,24 +9,20 @@ export class GoogleMap extends Component {
     this.state = {
       activeMarker: {},
       selectedPlace: {},
-      apiKey: ''
+      apiKey: '',
     }
   }
 
   componentDidMount() {
-    mapService
-      .getApiKey()
-      .then(apiKey => {
-        this.setState({ apiKey })
-      })
+    mapService.getApiKey().then(apiKey => {
+      this.setState({ apiKey })
+    })
   }
 
   render() {
-    return (
-        this.state.apiKey ?
-            <MapContainer apiKey={this.state.apiKey} />
-        : null
-    )
+    return this.state.apiKey ? (
+      <MapContainer apiKey={this.state.apiKey} />
+    ) : null
   }
 }
 

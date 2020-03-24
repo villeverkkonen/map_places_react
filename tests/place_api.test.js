@@ -21,24 +21,20 @@ test('places are returned as json', async () => {
 })
 
 test('there are two places', async () => {
-  const response = await api
-    .get('/api/places')
+  const response = await api.get('/api/places')
 
   expect(response.body.length).toBe(2)
 })
 
-test('the title of the first place is \'Test1\'', async () => {
-  const response = await api
-    .get('/api/places')
+test("the title of the first place is 'Test1'", async () => {
+  const response = await api.get('/api/places')
 
   expect(response.body[0].title).toBe('Test1')
 })
 
 test('GET /api/places/:id with invalid id return 500', async () => {
   const invalidId = '5a3d5da59070081a82a3445'
-  const response = await api
-    .get(`/api/places/${invalidId}`)
-    .expect(500)
+  const response = await api.get(`/api/places/${invalidId}`).expect(500)
 })
 
 test('GET /api/places/:id with valid nonexisting id return 404', async () => {
@@ -55,8 +51,7 @@ test('view a specific place', async () => {
     .expect('Content-Type', /application\/json/)
 
   const aPlaceFromAll = resultAll.body[0]
-  const resultPlace = await api
-    .get(`/api/places/${aPlaceFromAll.id}`)
+  const resultPlace = await api.get(`/api/places/${aPlaceFromAll.id}`)
 
   const placeObject = resultPlace.body
   expect(placeObject).toEqual(aPlaceFromAll)
@@ -64,27 +59,20 @@ test('view a specific place', async () => {
 
 test('a place can be created and deleted', async () => {
   const newPlace = {
-    title: 'Place to be deleted'
+    title: 'Place to be deleted',
   }
 
-  const placesAtBeginning = await api
-    .get('/api/places')
+  const placesAtBeginning = await api.get('/api/places')
 
-  const addedPlace = await api
-    .post('/api/places')
-    .send(newPlace)
+  const addedPlace = await api.post('/api/places').send(newPlace)
 
-  const placesBeforeDelete = await api
-    .get('/api/places')
+  const placesBeforeDelete = await api.get('/api/places')
 
   expect(placesAtBeginning.body.length).toBe(placesBeforeDelete.body.length - 1)
 
-  await api
-    .delete(`/api/places/${addedPlace.body.id}`)
-    .expect(204)
+  await api.delete(`/api/places/${addedPlace.body.id}`).expect(204)
 
-  const placesAfterDelete = await api
-    .get('/api/places')
+  const placesAfterDelete = await api.get('/api/places')
 
   const titles = placesAfterDelete.body.map(r => r.title)
 

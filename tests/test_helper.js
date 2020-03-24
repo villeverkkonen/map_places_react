@@ -6,15 +6,15 @@ const initialPlaces = [
     description: 'Test1',
     latitude: 60,
     longitude: 25,
-    openingHours: 8-16
+    openingHours: 8 - 16,
   },
   {
     title: 'Test2',
     description: 'Test2',
     latitude: 61,
     longitude: 26,
-    openingHours: 9-17
-  }
+    openingHours: 9 - 17,
+  },
 ]
 
 const placesInDb = async () => {
@@ -33,5 +33,5 @@ const nonExistingId = async () => {
 module.exports = {
   initialPlaces,
   placesInDb,
-  nonExistingId
+  nonExistingId,
 }

@@ -6,10 +6,10 @@ const placeSchema = new mongoose.Schema({
   latitude: String,
   longitude: String,
   openingHours: String,
-  keywords: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Keyword' }]
+  keywords: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Keyword' }],
 })
 
-placeSchema.statics.format = (place) => {
+placeSchema.statics.format = place => {
   return {
     id: place.id,
     title: place.title,
@@ -17,7 +17,7 @@ placeSchema.statics.format = (place) => {
     latitude: place.latitude,
     longitude: place.longitude,
     openingHours: place.openingHours,
-    keywords: place.keywords
+    keywords: place.keywords,
   }
 }
 

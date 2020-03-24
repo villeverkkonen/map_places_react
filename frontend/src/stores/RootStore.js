@@ -5,14 +5,11 @@ import markerReducer from '../reducers/MarkerReducer'
 import keywordReducer from '../reducers/KeywordReducer'
 
 const rootReducer = combineReducers({
-    placeReducer,
-    markerReducer,
-    keywordReducer
+  placeReducer,
+  markerReducer,
+  keywordReducer,
 })
 
-const RootStore = createStore(
-    rootReducer,
-    applyMiddleware(thunk)
-)
+const RootStore = createStore(rootReducer, applyMiddleware(thunk))
 
 export default RootStore

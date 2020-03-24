@@ -1,17 +1,16 @@
-
 const initialState = {
-    markers: [
-        {
-            title: "testiMarker"
-        }
-    ]
+  markers: [
+    {
+      title: 'testiMarker',
+    },
+  ],
 }
 
 const MarkerReducer = (state = initialState, action) => {
-    switch (action.type) {
-        default:
-            return state
-    }
+  switch (action.type) {
+    default:
+      return state
+  }
 }
 
 export default MarkerReducer

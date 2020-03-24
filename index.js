@@ -15,12 +15,11 @@ const options = {
   useFindAndModify: false,
   keepAlive: 1000,
   connectTimeoutMS: 30000,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 }
 mongoose
   .connect(config.mongoUrl, options)
-  .then(() => {
-  })
+  .then(() => {})
   .catch(err => {
     console.log(err)
   })
@@ -47,5 +46,6 @@ server.on('close', () => {
 })
 
 module.exports = {
-  app, server
+  app,
+  server,
 }

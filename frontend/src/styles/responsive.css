@@ -1,77 +1,78 @@
 @media only screen and (max-width: 800px) {
-    #alignedDivs {
-        display: block;
-        flex-direction: unset;
-        justify-content: unset;
-        min-width: 100%;
-        width: min-content;
-    }
-    
-    #leftDiv {
-        flex: none;
-        display: block;
-    }
-    
-    #rightDiv {
-        display: block;
-        flex: none;
-        text-align: left;
-        width: auto;
-    }
+  #alignedDivs {
+    display: block;
+    flex-direction: unset;
+    justify-content: unset;
+    min-width: 100%;
+    width: min-content;
+  }
 
-    .updatePlaceForm,
-    .updateKeywordForm,
-    .createKeywordForm {
-        margin-top: 5px;
-        float: none;
-        clear: none;
-    }
+  #leftDiv {
+    flex: none;
+    display: block;
+  }
 
-    .addKeywordButton {
-        float: none;
-    }
+  #rightDiv {
+    display: block;
+    flex: none;
+    text-align: left;
+    width: auto;
+  }
 
-    .updateKeywordSaveButton {
-        margin-left: 0;
-    }
+  .updatePlaceForm,
+  .updateKeywordForm,
+  .createKeywordForm {
+    margin-top: 5px;
+    float: none;
+    clear: none;
+  }
 
-    .linearGradient {
-        background-image: linear-gradient(to right, #282828 , #000000);
-    }
+  .addKeywordButton {
+    float: none;
+  }
 
-    .createPlaceInput,
-    .updatePlaceInput {
-        margin-left: 150px;
-    }
+  .updateKeywordSaveButton {
+    margin-left: 0;
+  }
 
-    .keywordSearch {
-        float: none;
-        clear: none;
-    }
+  .linearGradient {
+    background-image: linear-gradient(to right, #282828, #000000);
+  }
+
+  .createPlaceInput,
+  .updatePlaceInput {
+    margin-left: 150px;
+  }
+
+  .keywordSearch {
+    float: none;
+    clear: none;
+  }
 }
 
 @media only screen and (max-width: 450px) {
-    .createPlaceLabel, .updatePlaceLabel {
-        float: none;
-        width: 100%;
-    }
+  .createPlaceLabel,
+  .updatePlaceLabel {
+    float: none;
+    width: 100%;
+  }
 
-    .createPlaceInput,
-    .updatePlaceInput {
-        margin-left: 0;
-        width: 100%;
-    }
+  .createPlaceInput,
+  .updatePlaceInput {
+    margin-left: 0;
+    width: 100%;
+  }
 
-    .createPlaceSaveButton,
-    .updatePlaceSaveButton {
-        margin-left: 0;
-    }
+  .createPlaceSaveButton,
+  .updatePlaceSaveButton {
+    margin-left: 0;
+  }
 
-    .deletePlaceButton,
-    .deleteKeywordButton,
-    .updatePlaceButton,
-    .updateKeywordButton {
-        margin: 10px 0 0 0;
-        display: block;
-    }
+  .deletePlaceButton,
+  .deleteKeywordButton,
+  .updatePlaceButton,
+  .updateKeywordButton {
+    margin: 10px 0 0 0;
+    display: block;
+  }
 }

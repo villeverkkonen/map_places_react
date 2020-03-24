@@ -6,11 +6,11 @@
     "axios": "^0.18.0",
     "google-maps-react": "^2.0.2",
     "immutability-helper": "^3.0.1",
-    "mem": ">=4.0.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "mem": "^6.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-scripts": "2.1.8",
-    "redux": "^4.0.4",
+    "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -29,7 +29,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "react-redux": "^7.1.1"
+    "react-redux": "^7.2.0"
   },
   "proxy": "http://localhost:3001"
 }

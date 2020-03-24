@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import InfoWindowEx from './InfoWindowEx'
 
 const mapStateToProps = state => {
@@ -8,7 +8,7 @@ const mapStateToProps = state => {
     places: state.placeReducer.places,
     placesByQuery: state.placeReducer.placesByQuery,
     keywordSearchQuery: state.placeReducer.keywordSearchQuery,
-    markers: state.markerReducer.markers
+    markers: state.markerReducer.markers,
   }
 }
 
@@ -18,23 +18,26 @@ export class ConnectedContainer extends Component {
 
     this.state = {
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: {},
     }
 
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this)
   }
 
   toggleInfoWindow = (props, marker, e) => {
-    if (marker.title === this.state.activeMarker.title && this.state.showingInfoWindow) {
+    if (
+      marker.title === this.state.activeMarker.title &&
+      this.state.showingInfoWindow
+    ) {
       this.setState({
         activeMarker: {},
-        showingInfoWindow: false
+        showingInfoWindow: false,
       })
     } else {
       this.setState({
         selectedPlace: props.place_,
         activeMarker: marker,
-        showingInfoWindow: true
+        showingInfoWindow: true,
       })
     }
   }
@@ -47,30 +50,29 @@ export class ConnectedContainer extends Component {
           zoom={5}
           initialCenter={{
             lat: 60.192059,
-            lng: 24.945831
+            lng: 24.945831,
           }}
         >
-          {this.props.placesByQuery.length > 0 || this.props.keywordSearchQuery.length ?
-            this.props.placesByQuery.map(place =>
-              <Marker
-                key={place.id}
-                position={{lat: place.latitude, lng: place.longitude}}
-                title={place.title}
-                place_={place}
-                onClick={this.toggleInfoWindow}
-              />
-            )
-          :
-            this.props.places.map(place =>
-              <Marker
-                key={place.id}
-                position={{lat: place.latitude, lng: place.longitude}}
-                title={place.title}
-                place_={place}
-                onClick={this.toggleInfoWindow}
-              />
-            )
-          }
+          {this.props.placesByQuery.length > 0 ||
+          this.props.keywordSearchQuery.length
+            ? this.props.placesByQuery.map(place => (
+                <Marker
+                  key={place.id}
+                  position={{ lat: place.latitude, lng: place.longitude }}
+                  title={place.title}
+                  place_={place}
+                  onClick={this.toggleInfoWindow}
+                />
+              ))
+            : this.props.places.map(place => (
+                <Marker
+                  key={place.id}
+                  position={{ lat: place.latitude, lng: place.longitude }}
+                  title={place.title}
+                  place_={place}
+                  onClick={this.toggleInfoWindow}
+                />
+              ))}
           <InfoWindowEx
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
@@ -82,9 +84,8 @@ export class ConnectedContainer extends Component {
             </div>
           </InfoWindowEx>
         </Map>
-        
       </div>
-    );
+    )
   }
 }
 
